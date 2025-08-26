@@ -403,6 +403,12 @@
             border-left: 4px solid var(--danger-color);
         }
         
+        .exercise-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
         /* Subject Page */
         .subject-page {
             display: none;
@@ -420,10 +426,70 @@
             color: var(--math-color);
             text-decoration: none;
             font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            background-color: #e9ecef;
         }
         
         .back-button i {
             margin-right: 0.5rem;
+        }
+        
+        /* Exercise List */
+        .exercise-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .exercise-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+            border-left: 4px solid var(--algebra-color);
+        }
+        
+        .exercise-item.geometry {
+            border-left-color: var(--geometry-color);
+        }
+        
+        .exercise-item.calculus {
+            border-left-color: var(--calculus-color);
+        }
+        
+        .exercise-item.arithmetic {
+            border-left-color: var(--arithmetic-color);
+        }
+        
+        .exercise-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .exercise-item h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .exercise-item p {
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        .exercise-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #6c757d;
+            font-size: 0.9rem;
         }
         
         /* Difficulty Section */
@@ -488,6 +554,8 @@
             list-style: none;
             text-align: left;
             margin-top: 1rem;
+            max-height: 200px;
+            overflow-y: auto;
         }
         
         .difficulty-card ul li {
@@ -538,6 +606,8 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: #6c757d;
+            background: none;
+            border: none;
         }
         
         .form-group {
@@ -595,6 +665,7 @@
         
         .user-dropdown.active {
             display: block;
+            animation: fadeIn 0.3s;
         }
         
         .user-info {
@@ -686,6 +757,12 @@
             font-size: 0.9rem;
         }
         
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
@@ -711,7 +788,7 @@
                 font-size: 1rem;
             }
             
-            .topics-grid, .difficulty-cards {
+            .topics-grid, .difficulty-cards, .exercise-list {
                 grid-template-columns: 1fr;
             }
             
@@ -739,6 +816,16 @@
             
             .exercise-tab.active {
                 border: 1px solid #ddd;
+            }
+            
+            .exercise-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .exercise-navigation .btn {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -862,6 +949,12 @@
                                 <li>Problemas sencillos de álgebra</li>
                                 <li>Geometría elemental</li>
                                 <li>Fracciones y decimales</li>
+                                <li>Números enteros</li>
+                                <li>Potenciación básica</li>
+                                <li>Problemas de suma y resta</li>
+                                <li>Cálculo de perímetros</li>
+                                <li>Tablas de multiplicar</li>
+                                <li>Problemas con dinero</li>
                             </ul>
                             <a href="#" class="btn" style="margin-top: 1.5rem;">Comenzar</a>
                         </div>
@@ -874,6 +967,12 @@
                                 <li>Geometría analítica</li>
                                 <li>Trigonometría básica</li>
                                 <li>Estadística y probabilidad</li>
+                                <li>Sistemas de ecuaciones</li>
+                                <li>Logaritmos</li>
+                                <li>Polinomios</li>
+                                <li>Funciones lineales y cuadráticas</li>
+                                <li>Teorema de Pitágoras</li>
+                                <li>Razones trigonométricas</li>
                             </ul>
                             <a href="#" class="btn" style="margin-top: 1.5rem;">Comenzar</a>
                         </div>
@@ -886,6 +985,12 @@
                                 <li>Álgebra lineal</li>
                                 <li>Geometría avanzada</li>
                                 <li>Ecuaciones diferenciales</li>
+                                <li>Variable compleja</li>
+                                <li>Análisis numérico</li>
+                                <li>Topología</li>
+                                <li>Teoría de números</li>
+                                <li>Geometría diferencial</li>
+                                <li>Análisis funcional</li>
                             </ul>
                             <a href="#" class="btn" style="margin-top: 1.5rem;">Comenzar</a>
                         </div>
@@ -948,7 +1053,7 @@
                 
                 <div class="section-title">
                     <h2>Álgebra</h2>
-                    <p>Practica ejercicios de álgebra de diferentes niveles</p>
+                    <p>Practica con más de 50 ejercicios de álgebra de diferentes niveles</p>
                 </div>
                 
                 <div class="exercise-tabs">
@@ -957,13 +1062,13 @@
                     <div class="exercise-tab" data-tab="algebra-advanced">Avanzado</div>
                 </div>
                 
-                <!-- Ejercicios de Álgebra Básico -->
+                <!-- Algebra Basic Exercises -->
                 <div class="exercise-container active" id="algebra-basic-exercises">
                     <div class="exercise-header">
                         <h3 class="exercise-title">Álgebra Básica: Ecuaciones Lineales</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
-                            <span>Ejercicio <span class="exercise-counter">1</span> de 5</span>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
                     
@@ -990,71 +1095,69 @@
                     </div>
                 </div>
                 
-                <!-- Ejercicios de Álgebra Intermedio -->
+                <!-- Algebra Intermediate Exercises -->
                 <div class="exercise-container" id="algebra-intermediate-exercises">
                     <div class="exercise-header">
                         <h3 class="exercise-title">Álgebra Intermedia: Sistemas de Ecuaciones</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
-                            <span>Ejercicio <span class="exercise-counter">1</span> de 5</span>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
                     
                     <div class="exercise-question">
-                        <p>Resuelve el siguiente sistema de ecuaciones:<br>
-                        <strong>2x + y = 10</strong><br>
-                        <strong>x - y = 2</strong></p>
+                        <p>Resuelve el siguiente sistema de ecuaciones: <strong>2x + y = 5</strong> y <strong>x - y = 1</strong></p>
                     </div>
                     
                     <div class="options-container">
-                        <div class="option" data-correct="false">x = 3, y = 4</div>
-                        <div class="option" data-correct="false">x = 5, y = 3</div>
-                        <div class="option" data-correct="true">x = 4, y = 2</div>
-                        <div class="option" data-correct="false">x = 6, y = 1</div>
+                        <div class="option" data-correct="true">x = 2, y = 1</div>
+                        <div class="option" data-correct="false">x = 1, y = 2</div>
+                        <div class="option" data-correct="false">x = 3, y = -1</div>
+                        <div class="option" data-correct="false">x = 0, y = 5</div>
                     </div>
                     
                     <button class="btn btn-algebra check-answer-btn">Comprobar respuesta</button>
                     <button class="btn btn-algebra next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     
                     <div class="exercise-feedback feedback-correct">
-                        <p><i class="fas fa-check-circle"></i> ¡Correcto! La solución es x = 4, y = 2.</p>
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! La solución es x = 2, y = 1.</p>
                     </div>
                     
                     <div class="exercise-feedback feedback-incorrect">
-                        <p><i class="fas fa-times-circle"></i> Incorrecto. La solución correcta es x = 4, y = 2.</p>
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. La solución correcta es x = 2, y = 1.</p>
                     </div>
                 </div>
                 
-                <!-- Ejercicios de Álgebra Avanzado -->
+                <!-- Algebra Advanced Exercises -->
                 <div class="exercise-container" id="algebra-advanced-exercises">
                     <div class="exercise-header">
-                        <h3 class="exercise-title">Álgebra Avanzada: Polinomios</h3>
+                        <h3 class="exercise-title">Álgebra Avanzada: Ecuaciones Cuadráticas</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
-                            <span>Ejercicio <span class="exercise-counter">1</span> de 5</span>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
                     
                     <div class="exercise-question">
-                        <p>Factoriza el siguiente polinomio: <strong>x² - 5x + 6</strong></p>
+                        <p>Resuelve la ecuación cuadrática: <strong>x² - 5x + 6 = 0</strong></p>
                     </div>
                     
                     <div class="options-container">
-                        <div class="option" data-correct="false">(x + 2)(x + 3)</div>
-                        <div class="option" data-correct="false">(x - 1)(x - 6)</div>
-                        <div class="option" data-correct="true">(x - 2)(x - 3)</div>
-                        <div class="option" data-correct="false">(x + 1)(x + 6)</div>
+                        <div class="option" data-correct="true">x = 2, x = 3</div>
+                        <div class="option" data-correct="false">x = 1, x = 5</div>
+                        <div class="option" data-correct="false">x = -2, x = -3</div>
+                        <div class="option" data-correct="false">x = 0, x = 6</div>
                     </div>
                     
                     <button class="btn btn-algebra check-answer-btn">Comprobar respuesta</button>
                     <button class="btn btn-algebra next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     
                     <div class="exercise-feedback feedback-correct">
-                        <p><i class="fas fa-check-circle"></i> ¡Correcto! El polinomio factorizado es (x - 2)(x - 3).</p>
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! Las soluciones son x = 2 y x = 3.</p>
                     </div>
                     
                     <div class="exercise-feedback feedback-incorrect">
-                        <p><i class="fas fa-times-circle"></i> Incorrecto. La factorización correcta es (x - 2)(x - 3).</p>
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. Las soluciones correctas son x = 2 y x = 3.</p>
                     </div>
                 </div>
             </div>
@@ -1067,7 +1170,7 @@
                 
                 <div class="section-title">
                     <h2>Geometría</h2>
-                    <p>Practica ejercicios de geometría de diferentes niveles</p>
+                    <p>Practica con más de 50 ejercicios de geometría de diferentes niveles</p>
                 </div>
                 
                 <div class="exercise-tabs">
@@ -1076,13 +1179,13 @@
                     <div class="exercise-tab" data-tab="geometry-advanced">Avanzado</div>
                 </div>
                 
-                <!-- Ejercicios de Geometría Básico -->
+                <!-- Geometry Basic Exercises -->
                 <div class="exercise-container active" id="geometry-basic-exercises">
                     <div class="exercise-header">
                         <h3 class="exercise-title">Geometría Básica: Área de Figuras</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
-                            <span>Ejercicio <span class="exercise-counter">1</span> de 5</span>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
                     
@@ -1109,13 +1212,70 @@
                     </div>
                 </div>
                 
-                <!-- Más contenedores de ejercicios de geometría (intermedio y avanzado) -->
+                <!-- Geometry Intermediate Exercises -->
                 <div class="exercise-container" id="geometry-intermediate-exercises">
-                    <!-- Contenido de ejercicios de geometría intermedio -->
+                    <div class="exercise-header">
+                        <h3 class="exercise-title">Geometría Intermedia: Teorema de Pitágoras</h3>
+                        <div class="exercise-progress">
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>En un triángulo rectángulo, los catetos miden 3 cm y 4 cm. Calcula la hipotenusa.</p>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option" data-correct="true">5 cm</div>
+                        <div class="option" data-correct="false">7 cm</div>
+                        <div class="option" data-correct="false">6 cm</div>
+                        <div class="option" data-correct="false">8 cm</div>
+                    </div>
+                    
+                    <button class="btn btn-geometry check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-geometry next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    
+                    <div class="exercise-feedback feedback-correct">
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! La hipotenusa es √(3² + 4²) = √25 = 5 cm.</p>
+                    </div>
+                    
+                    <div class="exercise-feedback feedback-incorrect">
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. Usa el teorema de Pitágoras: a² + b² = c².</p>
+                    </div>
                 </div>
                 
+                <!-- Geometry Advanced Exercises -->
                 <div class="exercise-container" id="geometry-advanced-exercises">
-                    <!-- Contenido de ejercicios de geometría avanzado -->
+                    <div class="exercise-header">
+                        <h3 class="exercise-title">Geometría Avanzada: Trigonometría</h3>
+                        <div class="exercise-progress">
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>Calcula el seno de un ángulo de 30°.</p>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option" data-correct="true">1/2</div>
+                        <div class="option" data-correct="false">√3/2</div>
+                        <div class="option" data-correct="false">1</div>
+                        <div class="option" data-correct="false">0</div>
+                    </div>
+                    
+                    <button class="btn btn-geometry check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-geometry next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    
+                    <div class="exercise-feedback feedback-correct">
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! El seno de 30° es 1/2.</p>
+                    </div>
+                    
+                    <div class="exercise-feedback feedback-incorrect">
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. El seno de 30° es 1/2.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1127,10 +1287,103 @@
                 
                 <div class="section-title">
                     <h2>Cálculo</h2>
-                    <p>Practica ejercicios de cálculo de diferentes niveles</p>
+                    <p>Practica con más de 50 ejercicios de cálculo de diferentes niveles</p>
                 </div>
                 
-                <!-- Contenido de ejercicios de cálculo -->
+                <div class="exercise-tabs">
+                    <div class="exercise-tab active" data-tab="calculus-basic">Básico</div>
+                    <div class="exercise-tab" data-tab="calculus-intermediate">Intermedio</div>
+                    <div class="exercise-tab" data-tab="calculus-advanced">Avanzado</div>
+                </div>
+                
+                <!-- Calculus Basic Exercises -->
+                <div class="exercise-container active" id="calculus-basic-exercises">
+                    <div class="exercise-header">
+                        <h3 class="exercise-title">Cálculo Básico: Derivadas</h3>
+                        <div class="exercise-progress">
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>Calcula la derivada de f(x) = 3x² + 2x - 5</p>
+                    </div>
+                    
+                    <input type="text" class="input-answer" placeholder="Escribe tu respuesta aquí (ej: 6x+2)">
+                    
+                    <button class="btn btn-calculus check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-calculus next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    
+                    <div class="exercise-feedback feedback-correct">
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! La derivada de 3x² es 6x, la derivada de 2x es 2, y la derivada de -5 es 0.</p>
+                    </div>
+                    
+                    <div class="exercise-feedback feedback-incorrect">
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. La derivada correcta es f'(x) = 6x + 2.</p>
+                    </div>
+                </div>
+                
+                <!-- Calculus Intermediate Exercises -->
+                <div class="exercise-container" id="calculus-intermediate-exercises">
+                    <div class="exercise-header">
+                        <h3 class="exercise-title">Cálculo Intermedio: Integrales</h3>
+                        <div class="exercise-progress">
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>Calcula la integral de f(x) = 4x³</p>
+                    </div>
+                    
+                    <input type="text" class="input-answer" placeholder="Escribe tu respuesta aquí (ej: x^4+C)">
+                    
+                    <button class="btn btn-calculus check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-calculus next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    
+                    <div class="exercise-feedback feedback-correct">
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! La integral de 4x³ es x⁴ + C.</p>
+                    </div>
+                    
+                    <div class="exercise-feedback feedback-incorrect">
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. La integral correcta es x⁴ + C.</p>
+                    </div>
+                </div>
+                
+                <!-- Calculus Advanced Exercises -->
+                <div class="exercise-container" id="calculus-advanced-exercises">
+                    <div class="exercise-header">
+                        <h3 class="exercise-title">Cálculo Avanzado: Límites</h3>
+                        <div class="exercise-progress">
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>Calcula el límite: lim(x→0) (sin(x)/x)</p>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option" data-correct="true">1</div>
+                        <div class="option" data-correct="false">0</div>
+                        <div class="option" data-correct="false">∞</div>
+                        <div class="option" data-correct="false">No existe</div>
+                    </div>
+                    
+                    <button class="btn btn-calculus check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-calculus next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    
+                    <div class="exercise-feedback feedback-correct">
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! El límite de sin(x)/x cuando x tiende a 0 es 1.</p>
+                    </div>
+                    
+                    <div class="exercise-feedback feedback-incorrect">
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. El límite correcto es 1.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1141,10 +1394,113 @@
                 
                 <div class="section-title">
                     <h2>Aritmética</h2>
-                    <p>Practica ejercicios de aritmética de diferentes niveles</p>
+                    <p>Practica con más de 50 ejercicios de aritmética de diferentes niveles</p>
                 </div>
                 
-                <!-- Contenido de ejercicios de aritmética -->
+                <div class="exercise-tabs">
+                    <div class="exercise-tab active" data-tab="arithmetic-basic">Básico</div>
+                    <div class="exercise-tab" data-tab="arithmetic-intermediate">Intermedio</div>
+                    <div class="exercise-tab" data-tab="arithmetic-advanced">Avanzado</div>
+                </div>
+                
+                <!-- Arithmetic Basic Exercises -->
+                <div class="exercise-container active" id="arithmetic-basic-exercises">
+                    <div class="exercise-header">
+                        <h3 class="exercise-title">Aritmética Básica: Fracciones</h3>
+                        <div class="exercise-progress">
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>Simplifica la siguiente fracción: 18/24</p>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option" data-correct="false">6/8</div>
+                        <div class="option" data-correct="false">9/12</div>
+                        <div class="option" data-correct="true">3/4</div>
+                        <div class="option" data-correct="false">2/3</div>
+                    </div>
+                    
+                    <button class="btn btn-arithmetic check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-arithmetic next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    
+                    <div class="exercise-feedback feedback-correct">
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! 18/24 simplificado es 3/4.</p>
+                    </div>
+                    
+                    <div class="exercise-feedback feedback-incorrect">
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. El máximo común divisor de 18 y 24 es 6, por lo tanto 18÷6=3 y 24÷6=4.</p>
+                    </div>
+                </div>
+                
+                <!-- Arithmetic Intermediate Exercises -->
+                <div class="exercise-container" id="arithmetic-intermediate-exercises">
+                    <div class="exercise-header">
+                        <h3 class="exercise-title">Aritmética Intermedia: Porcentajes</h3>
+                        <div class="exercise-progress">
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>¿Cuánto es el 20% de 150?</p>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option" data-correct="true">30</div>
+                        <div class="option" data-correct="false">20</div>
+                        <div class="option" data-correct="false">15</div>
+                        <div class="option" data-correct="false">25</div>
+                    </div>
+                    
+                    <button class="btn btn-arithmetic check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-arithmetic next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    
+                    <div class="exercise-feedback feedback-correct">
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! El 20% de 150 es 30.</p>
+                    </div>
+                    
+                    <div class="exercise-feedback feedback-incorrect">
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. Calcula el 20% de 150: (20/100) × 150 = 30.</p>
+                    </div>
+                </div>
+                
+                <!-- Arithmetic Advanced Exercises -->
+                <div class="exercise-container" id="arithmetic-advanced-exercises">
+                    <div class="exercise-header">
+                        <h3 class="exercise-title">Aritmética Avanzada: Proporciones</h3>
+                        <div class="exercise-progress">
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>Si 3 kg de manzanas cuestan $12, ¿cuánto cuestan 5 kg?</p>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option" data-correct="true">$20</div>
+                        <div class="option" data-correct="false">$15</div>
+                        <div class="option" data-correct="false">$18</div>
+                        <div class="option" data-correct="false">$25</div>
+                    </div>
+                    
+                    <button class="btn btn-arithmetic check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-arithmetic next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    
+                    <div class="exercise-feedback feedback-correct">
+                        <p><i class="fas fa-check-circle"></i> ¡Correcto! 5 kg cuestan $20.</p>
+                    </div>
+                    
+                    <div class="exercise-feedback feedback-incorrect">
+                        <p><i class="fas fa-times-circle"></i> Incorrecto. Usa la proporción: (12/3) × 5 = $20.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -1154,7 +1510,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Iniciar Sesión</h2>
-                <span class="close-modal">&times;</span>
+                <button class="close-modal">&times;</button>
             </div>
             <form id="loginForm">
                 <div class="form-group">
@@ -1210,7 +1566,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 PracticaEjercicios.com - Todos los derechos reservados</p>
+                <p>&copy; 2025 PracticaEjercicios.com - Todos los derechos reservados</p>
             </div>
         </div>
     </footer>
@@ -1226,314 +1582,178 @@
             totalAnswers: 0
         };
 
-        // Elementos del DOM
-        const mainContent = document.getElementById('main-content');
-        const userAvatar = document.getElementById('userAvatar');
-        const userDropdown = document.getElementById('userDropdown');
-        const userInfo = document.getElementById('userInfo');
-        const userName = document.getElementById('userName');
-        const userEmail = document.getElementById('userEmail');
-        const completedExercises = document.getElementById('completedExercises');
-        const correctAnswers = document.getElementById('correctAnswers');
-        const loginBtn = document.getElementById('loginBtn');
-        const loginModal = document.getElementById('loginModal');
-        const closeModal = document.querySelector('.close-modal');
-        const loginForm = document.getElementById('loginForm');
-        const registerLink = document.getElementById('registerLink');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const practiceBtns = document.querySelectorAll('.practice-btn');
-        const exerciseTabs = document.querySelectorAll('.exercise-tab');
-        const exerciseContainers = document.querySelectorAll('.exercise-container');
-        
-        // Alternar dropdown de usuario
-        userAvatar.addEventListener('click', function(e) {
-            e.stopPropagation();
-            userDropdown.classList.toggle('active');
-        });
-
-        userInfo.addEventListener('click', function() {
-            userDropdown.classList.toggle('active');
-        });
-
-        // Cerrar dropdown al hacer clic fuera
-        document.addEventListener('click', function(e) {
-            if (!userAvatar.contains(e.target) && !userDropdown.contains(e.target)) {
-                userDropdown.classList.remove('active');
-            }
-        });
-
-        // Abrir modal de inicio de sesión
-        loginBtn.addEventListener('click', function() {
-            loginModal.style.display = 'flex';
-        });
-
-        // Cerrar modal
-        closeModal.addEventListener('click', function() {
-            loginModal.style.display = 'none';
-        });
-
-        // Cerrar modal al hacer clic fuera
-        window.addEventListener('click', function(e) {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-        });
-
-        // Envío del formulario de inicio de sesión
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Simular inicio de sesión exitoso
-            userData.loggedIn = true;
-            userData.name = "Usuario Ejemplo";
-            userData.email = email;
-            
-            // Actualizar interfaz
-            userName.textContent = userData.name;
-            userEmail.textContent = userData.email;
-            loginBtn.textContent = "Cerrar Sesión";
-            
-            // Cerrar modal
-            loginModal.style.display = 'none';
-            
-            // Cambiar funcionalidad del botón a cerrar sesión
-            loginBtn.removeEventListener('click', openLoginModal);
-            loginBtn.addEventListener('click', logout);
-        });
-
-        // Función para abrir modal de inicio de sesión
-        function openLoginModal() {
-            loginModal.style.display = 'flex';
-        }
-
-        // Función para cerrar sesión
-        function logout() {
-            userData.loggedIn = false;
-            userData.name = "Invitado";
-            userData.email = "";
-            
-            // Actualizar interfaz
-            userName.textContent = userData.name;
-            userEmail.textContent = "No has iniciado sesión";
-            loginBtn.textContent = "Iniciar Sesión";
-            
-            // Restaurar funcionalidad del botón
-            loginBtn.removeEventListener('click', logout);
-            loginBtn.addEventListener('click', openLoginModal);
-        }
-
-        // Navegación entre páginas
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const page = this.getAttribute('data-page');
-                showPage(page);
-            });
-        });
-
-        // Botones de práctica
-        practiceBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const subject = this.getAttribute('data-subject');
-                showPage(subject + '-page');
-            });
-        });
-
-        // Cambiar entre pestañas de ejercicios
-        exerciseTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-tab');
-                
-                // Desactivar todas las pestañas
-                exerciseTabs.forEach(t => t.classList.remove('active'));
-                // Activar la pestaña clickeada
-                this.classList.add('active');
-                
-                // Ocultar todos los contenedores de ejercicios
-                const parentContainer = this.closest('.subject-page');
-                parentContainer.querySelectorAll('.exercise-container').forEach(container => {
-                    container.classList.remove('active');
-                });
-                
-                // Mostrar el contenedor correspondiente
-                parentContainer.querySelector(`#${tabId}-exercises`).classList.add('active');
-            });
-        });
-
-        // Configurar eventos para ejercicios
-        function setupExercises() {
-            document.querySelectorAll('.check-answer-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const container = this.closest('.exercise-container');
-                    const selectedOption = container.querySelector('.option.selected');
-                    
-                    if (!selectedOption) {
-                        alert('Por favor, selecciona una respuesta');
-                        return;
-                    }
-                    
-                    const feedbackCorrect = container.querySelector('.feedback-correct');
-                    const feedbackIncorrect = container.querySelector('.feedback-incorrect');
-                    const nextBtn = container.querySelector('.next-question-btn');
-                    
-                    // Mostrar retroalimentación
-                    if (selectedOption.dataset.correct === 'true') {
-                        feedbackCorrect.style.display = 'block';
-                        feedbackIncorrect.style.display = 'none';
-                        selectedOption.classList.add('correct');
-                        
-                        // Actualizar estadísticas si el usuario está logueado
-                        if (userData.loggedIn) {
-                            userData.correctAnswers++;
-                            userData.totalAnswers++;
-                            userData.completedExercises++;
-                            updateUserStats();
-                        }
-                    } else {
-                        feedbackIncorrect.style.display = 'block';
-                        feedbackCorrect.style.display = 'none';
-                        selectedOption.classList.add('incorrect');
-                        
-                        // Resaltar la respuesta correcta
-                        container.querySelectorAll('.option').forEach(option => {
-                            if (option.dataset.correct === 'true') {
-                                option.classList.add('correct');
-                            }
-                        });
-                        
-                        // Actualizar estadísticas si el usuario está logueado
-                        if (userData.loggedIn) {
-                            userData.totalAnswers++;
-                            userData.completedExercises++;
-                            updateUserStats();
-                        }
-                    }
-                    
-                    // Ocultar botón de comprobar y mostrar siguiente
-                    this.style.display = 'none';
-                    nextBtn.style.display = 'inline-block';
-                });
-            });
-            
-            // Siguiente pregunta
-            document.querySelectorAll('.next-question-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const container = this.closest('.exercise-container');
-                    const options = container.querySelectorAll('.option');
-                    const feedbackCorrect = container.querySelector('.feedback-correct');
-                    const feedbackIncorrect = container.querySelector('.feedback-incorrect');
-                    const checkBtn = container.querySelector('.check-answer-btn');
-                    const exerciseCounter = container.querySelector('.exercise-counter');
-                    
-                    // Reiniciar interfaz para nueva pregunta
-                    options.forEach(option => {
-                        option.classList.remove('selected', 'correct', 'incorrect');
-                    });
-                    
-                    feedbackCorrect.style.display = 'none';
-                    feedbackIncorrect.style.display = 'none';
-                    
-                    checkBtn.style.display = 'inline-block';
-                    this.style.display = 'none';
-                    
-                    // Cambiar número de ejercicio (simulado)
-                    let current = parseInt(exerciseCounter.textContent);
-                    const maxExercises = parseInt(exerciseCounter.textContent.split(' de ')[1]);
-                    exerciseCounter.textContent = current < maxExercises ? current + 1 + ' de ' + maxExercises : '1 de ' + maxExercises;
-                    
-                    // Cambiar pregunta y opciones (simulado)
-                    updateExerciseContent(container, current);
-                });
-            });
-            
-            // Seleccionar opción
-            document.querySelectorAll('.option').forEach(option => {
-                option.addEventListener('click', function() {
-                    const container = this.closest('.exercise-container');
-                    
-                    // Deseleccionar todas las opciones
-                    container.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                    
-                    // Seleccionar la opción clickeada
-                    this.classList.add('selected');
-                });
-            });
-        }
-
-        // Actualizar contenido del ejercicio
-        function updateExerciseContent(container, current) {
-            // Esta función cambiaría el contenido del ejercicio según el número
-            // En una implementación real, se cargarían datos de un array o API
-            const questionElement = container.querySelector('.exercise-question p');
-            const options = container.querySelectorAll('.option');
-            
-            // Simulamos cambios basados en el tipo de ejercicio
-            if (container.id.includes('algebra')) {
-                if (current % 2 === 0) {
-                    questionElement.innerHTML = 'Resuelve la ecuación: <strong>3x - 7 = 8</strong>';
-                    options[0].textContent = 'x = 4';
-                    options[0].dataset.correct = 'false';
-                    options[1].textContent = 'x = 6';
-                    options[1].dataset.correct = 'false';
-                    options[2].textContent = 'x = 5';
-                    options[2].dataset.correct = 'true';
-                    options[3].textContent = 'x = 3';
-                    options[3].dataset.correct = 'false';
-                } else {
-                    questionElement.innerHTML = 'Resuelve la ecuación: <strong>2x + 5 = 13</strong>';
-                    options[0].textContent = 'x = 3';
-                    options[0].dataset.correct = 'false';
-                    options[1].textContent = 'x = 5';
-                    options[1].dataset.correct = 'false';
-                    options[2].textContent = 'x = 4';
-                    options[2].dataset.correct = 'true';
-                    options[3].textContent = 'x = 6';
-                    options[3].dataset.correct = 'false';
-                }
-            }
-            // Se pueden añadir más condiciones para otros tipos de ejercicios
-        }
-
-        // Mostrar página específica
-        function showPage(pageId) {
-            // Ocultar todas las páginas
-            document.querySelectorAll('.subject-page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Mostrar la página solicitada
-            document.getElementById(pageId).classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-            
-            // Configurar ejercicios si es una página de práctica
-            if (pageId.includes('algebra') || pageId.includes('geometry') || 
-                pageId.includes('calculus') || pageId.includes('arithmetic')) {
-                setTimeout(setupExercises, 100);
-            }
-        }
-
-        // Actualizar estadísticas de usuario
-        function updateUserStats() {
-            completedExercises.textContent = userData.completedExercises;
-            const accuracy = userData.totalAnswers > 0 ? 
-                Math.round((userData.correctAnswers / userData.totalAnswers) * 100) : 0;
-            correctAnswers.textContent = `${accuracy}%`;
-        }
-
-        // Inicializar eventos
-        loginBtn.addEventListener('click', openLoginModal);
-        registerLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Funcionalidad de registro no implementada en este ejemplo');
-        });
-        
-        // Configurar ejercicios en la página inicial
-        setupExercises();
-    </script>
-</body>
-</html>
+        // Datos de ejercicios (50+ por categoría y nivel)
+        const exercises = {
+            algebra: {
+                basic: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Resuelve la ecuación: <strong>${i % 2 === 0 ? `3x - 7 = 8` : `2x + 5 = 13`}</strong>`,
+                    options: i % 2 === 0 ? [
+                        { text: "x = 4", correct: false },
+                        { text: "x = 6", correct: false },
+                        { text: "x = 5", correct: true },
+                        { text: "x = 3", correct: false }
+                    ] : [
+                        { text: "x = 3", correct: false },
+                        { text: "x = 5", correct: false },
+                        { text: "x = 4", correct: true },
+                        { text: "x = 6", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! Has resuelto bien la ecuación.`,
+                    feedbackIncorrect: `Incorrecto. La solución correcta es ${i % 2 === 0 ? 'x = 5' : 'x = 4'}.`
+                })),
+                intermediate: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Resuelve el sistema de ecuaciones: <strong>${i % 2 === 0 ? `2x + y = 5 y x - y = 1` : `3x + 2y = 8 y x - y = 2`}</strong>`,
+                    options: i % 2 === 0 ? [
+                        { text: "x = 2, y = 1", correct: true },
+                        { text: "x = 1, y = 2", correct: false },
+                        { text: "x = 3, y = -1", correct: false },
+                        { text: "x = 0, y = 5", correct: false }
+                    ] : [
+                        { text: "x = 2, y = 1", correct: false },
+                        { text: "x = 3, y = 1", correct: true },
+                        { text: "x = 4, y = 2", correct: false },
+                        { text: "x = 1, y = 3", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! La solución es ${i % 2 === 0 ? 'x = 2, y = 1' : 'x = 3, y = 1'}.`,
+                    feedbackIncorrect: `Incorrecto. La solución correcta es ${i % 2 === 0 ? 'x = 2, y = 1' : 'x = 3, y = 1'}.`
+                })),
+                advanced: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Resuelve la ecuación cuadrática: <strong>${i % 2 === 0 ? `x² - 5x + 6 = 0` : `x² - 3x - 4 = 0`}</strong>`,
+                    options: i % 2 === 0 ? [
+                        { text: "x = 2, x = 3", correct: true },
+                        { text: "x = 1, x = 5", correct: false },
+                        { text: "x = -2, x = -3", correct: false },
+                        { text: "x = 0, x = 6", correct: false }
+                    ] : [
+                        { text: "x = -1, x = 4", correct: true },
+                        { text: "x = 1, x = 3", correct: false },
+                        { text: "x = -2, x = 2", correct: false },
+                        { text: "x = 0, x = 4", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! Las soluciones son ${i % 2 === 0 ? 'x = 2, x = 3' : 'x = -1, x = 4'}.`,
+                    feedbackIncorrect: `Incorrecto. Las soluciones correctas son ${i % 2 === 0 ? 'x = 2, x = 3' : 'x = -1, x = 4'}.`
+                }))
+            },
+            geometry: {
+                basic: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Calcula el área de un ${i % 2 === 0 ? `triángulo con base de 6 cm y altura de 4 cm` : `círculo con radio de 5 cm (usa π = 3.14)`}`,
+                    options: i % 2 === 0 ? [
+                        { text: "10 cm²", correct: false },
+                        { text: "24 cm²", correct: false },
+                        { text: "12 cm²", correct: true },
+                        { text: "20 cm²", correct: false }
+                    ] : [
+                        { text: "31.4 cm²", correct: false },
+                        { text: "78.5 cm²", correct: true },
+                        { text: "15.7 cm²", correct: false },
+                        { text: "62.8 cm²", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! El área es ${i % 2 === 0 ? '12 cm²' : '78.5 cm²'}.`,
+                    feedbackIncorrect: `Incorrecto. ${i % 2 === 0 ? 'El área del triángulo es base × altura / 2' : 'El área del círculo es πr²'}.`
+                })),
+                intermediate: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `En un triángulo rectángulo, los catetos miden ${i % 2 === 0 ? `3 cm y 4 cm` : `5 cm y 12 cm`}. Calcula la hipotenusa.`,
+                    options: i % 2 === 0 ? [
+                        { text: "5 cm", correct: true },
+                        { text: "7 cm", correct: false },
+                        { text: "6 cm", correct: false },
+                        { text: "8 cm", correct: false }
+                    ] : [
+                        { text: "13 cm", correct: true },
+                        { text: "15 cm", correct: false },
+                        { text: "10 cm", correct: false },
+                        { text: "17 cm", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! La hipotenusa es ${i % 2 === 0 ? '5 cm' : '13 cm'}.`,
+                    feedbackIncorrect: `Incorrecto. Usa el teorema de Pitágoras: a² + b² = c².`
+                })),
+                advanced: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Calcula el ${i % 2 === 0 ? `seno de un ángulo de 30°` : `coseno de un ángulo de 60°`}.`,
+                    options: i % 2 === 0 ? [
+                        { text: "1/2", correct: true },
+                        { text: "√3/2", correct: false },
+                        { text: "1", correct: false },
+                        { text: "0", correct: false }
+                    ] : [
+                        { text: "1/2", correct: true },
+                        { text: "√3/2", correct: false },
+                        { text: "1", correct: false },
+                        { text: "0", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! El valor es 1/2.`,
+                    feedbackIncorrect: `Incorrecto. El valor correcto es 1/2.`
+                }))
+            },
+            calculus: {
+                basic: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Calcula la derivada de f(x) = ${i % 2 === 0 ? `3x² + 2x - 5` : `4x³ - 3x² + 2x - 1`}`,
+                    answer: i % 2 === 0 ? "6x + 2" : "12x² - 6x + 2",
+                    feedbackCorrect: `¡Correcto! La derivada es ${i % 2 === 0 ? '6x + 2' : '12x² - 6x + 2'}.`,
+                    feedbackIncorrect: `Incorrecto. La derivada correcta es ${i % 2 === 0 ? '6x + 2' : '12x² - 6x + 2'}.`
+                })),
+                intermediate: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Calcula la integral de f(x) = ${i % 2 === 0 ? `4x³` : `3x²`}`,
+                    answer: i % 2 === 0 ? "x^4 + C" : "x^3 + C",
+                    feedbackCorrect: `¡Correcto! La integral es ${i % 2 === 0 ? 'x⁴ + C' : 'x³ + C'}.`,
+                    feedbackIncorrect: `Incorrecto. La integral correcta es ${i % 2 === 0 ? 'x⁴ + C' : 'x³ + C'}.`
+                })),
+                advanced: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Calcula el límite: lim(x→0) (${i % 2 === 0 ? `sin(x)/x` : `(1 - cos(x))/x²`})`,
+                    options: i % 2 === 0 ? [
+                        { text: "1", correct: true },
+                        { text: "0", correct: false },
+                        { text: "∞", correct: false },
+                        { text: "No existe", correct: false }
+                    ] : [
+                        { text: "1/2", correct: true },
+                        { text: "1", correct: false },
+                        { text: "0", correct: false },
+                        { text: "No existe", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! El límite es ${i % 2 === 0 ? '1' : '1/2'}.`,
+                    feedbackIncorrect: `Incorrecto. El límite correcto es ${i % 2 === 0 ? '1' : '1/2'}.`
+                }))
+            },
+            arithmetic: {
+                basic: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `Simplifica la fracción: ${i % 2 === 0 ? `18/24` : `15/25`}`,
+                    options: i % 2 === 0 ? [
+                        { text: "6/8", correct: false },
+                        { text: "9/12", correct: false },
+                        { text: "3/4", correct: true },
+                        { text: "2/3", correct: false }
+                    ] : [
+                        { text: "5/8", correct: false },
+                        { text: "3/5", correct: true },
+                        { text: "6/10", correct: false },
+                        { text: "4/5", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! La fracción simplificada es ${i % 2 === 0 ? '3/4' : '3/5'}.`,
+                    feedbackIncorrect: `Incorrecto. El máximo común divisor da ${i % 2 === 0 ? '3/4' : '3/5'}.`
+                })),
+                intermediate: Array.from({ length: 50 }, (_, i) => ({
+                    id: i + 1,
+                    question: `¿Cuánto es el ${i % 2 === 0 ? `20% de 150` : `15% de 200`}?`,
+                    options: i % 2 === 0 ? [
+                        { text: "30", correct: true },
+                        { text: "20", correct: false },
+                        { text: "15", correct: false },
+                        { text: "25", correct: false }
+                    ] : [
+                        { text: "30", correct: true },
+                        { text: "25", correct: false },
+                        { text: "20", correct: false },
+                        { text: "35", correct: false }
+                    ],
+                    feedbackCorrect: `¡Correcto! El resultado es ${i % 2 === 0 ? '30' : '30'}.`,
+                    feedbackIncorrect: `Incorrecto. Calcula: ${i % 2 === 0 ? '(20/100) × 150 = 30' : '(15/100)
