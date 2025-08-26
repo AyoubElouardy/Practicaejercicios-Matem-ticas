@@ -915,7 +915,7 @@
                         <h3 class="exercise-title">Álgebra Avanzada: Ecuaciones Cuadráticas</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
-                            <span>Ejercicio <span class="exercise-counter">1</span> of 50</span>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
                     <div class="exercise-question"></div>
@@ -1410,13 +1410,18 @@
                 page.classList.remove('active');
             });
             document.querySelector(`#${pageId}-page`).classList.add('active');
+            // Initialize exercises for subject pages
+            if (['algebra', 'geometry', 'calculus', 'arithmetic'].includes(pageId)) {
+                showSubject(pageId);
+            }
         }
 
         function showSubject(subject) {
             showPage(subject);
             const defaultTab = document.querySelector(`#${subject}-page .exercise-tab.active`);
             if (defaultTab) {
-                showExerciseTab(subject, defaultTab.dataset.tab);
+                const tabId = defaultTab.dataset.tab;
+                showExerciseTab(subject, tabId);
             }
         }
 
@@ -1431,27 +1436,31 @@
             page.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
             const container = page.querySelector(`#${tabId}-exercises`);
             container.classList.add('active');
-            loadExercise(subject, tabId, 1);
+            loadExercise(subject, tabId.split('-')[1], 1); // Load first exercise
         }
 
         function loadExercise(subject, level, exerciseId) {
             const exercise = exercises[subject][level].find(ex => ex.id === exerciseId);
-            const container = document.querySelector(`#${subject}-page #${level}-exercises`);
+            const container = document.querySelector(`#${subject}-page #${subject}-${level}-exercises`);
             container.querySelector('.exercise-counter').textContent = exerciseId;
             container.querySelector('.exercise-question').innerHTML = exercise.question;
+            container.querySelector('.feedback-correct').textContent = exercise.feedbackCorrect;
+            container.querySelector('.feedback-incorrect').textContent = exercise.feedbackIncorrect;
             
             const optionsContainer = container.querySelector('.options-container');
             const inputAnswer = container.querySelector('.input-answer');
             if (exercise.options) {
                 optionsContainer.style.display = 'grid';
-                inputAnswer && (inputAnswer.style.display = 'none');
+                if (inputAnswer) inputAnswer.style.display = 'none';
                 optionsContainer.innerHTML = exercise.options.map(opt => 
                     `<div class="option" data-correct="${opt.correct}">${opt.text}</div>`
                 ).join('');
             } else {
                 optionsContainer.style.display = 'none';
-                inputAnswer.style.display = 'block';
-                inputAnswer.value = '';
+                if (inputAnswer) {
+                    inputAnswer.style.display = 'block';
+                    inputAnswer.value = '';
+                }
             }
             
             container.querySelector('.check-answer-btn').style.display = 'block';
@@ -1459,10 +1468,16 @@
             container.querySelectorAll('.exercise-feedback').forEach(fb => {
                 fb.style.display = 'none';
             });
+            container.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
         }
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize home page
+            showPage('home');
+
             // Navigation links
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -1496,7 +1511,7 @@
                 btn.addEventListener('click', (e) => {
                     const container = btn.closest('.exercise-container');
                     const subject = container.closest('.subject-page').id.split('-')[0];
-                    const level = container.id.split('-')[0];
+                    const level = container.id.split('-')[1];
                     const exerciseId = parseInt(container.querySelector('.exercise-counter').textContent);
                     const exercise = exercises[subject][level].find(ex => ex.id === exerciseId);
                     
@@ -1506,7 +1521,7 @@
                         isCorrect = selectedOption && selectedOption.dataset.correct === 'true';
                     } else {
                         const input = container.querySelector('.input-answer');
-                        isCorrect = input.value.trim() === exercise.answer;
+                        isCorrect = input && input.value.trim() === exercise.answer;
                     }
                     
                     container.querySelector(isCorrect ? '.feedback-correct' : '.feedback-incorrect').style.display = 'block';
@@ -1542,7 +1557,7 @@
                 btn.addEventListener('click', (e) => {
                     const container = btn.closest('.exercise-container');
                     const subject = container.closest('.subject-page').id.split('-')[0];
-                    const level = container.id.split('-')[0];
+                    const level = container.id.split('-')[1];
                     let exerciseId = parseInt(container.querySelector('.exercise-counter').textContent);
                     exerciseId = exerciseId < 50 ? exerciseId + 1 : 1;
                     loadExercise(subject, level, exerciseId);
