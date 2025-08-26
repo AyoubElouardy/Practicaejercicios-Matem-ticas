@@ -691,7 +691,7 @@
                 <ul>
                     <li><a href="#" class="nav-link" data-page="home">Inicio</a></li>
                     <li><a href="#" class="nav-link" data-page="math">Matemáticas</a></li>
-                    <li><a href="#" class="nav-link" data-page="language">Lenguaje</a></li>
+                    <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Lengua-Castellana/">Lenguaje</a></li>
                     <li><a href="#" class="nav-link" data-page="science">Ciencias</a></li>
                     <li><a href="#" class="nav-link" data-page="social">Sociales</a></li>
                 </ul>
@@ -1168,7 +1168,7 @@
                     <ul>
                         <li><a href="#" class="nav-link" data-page="home">Inicio</a></li>
                         <li><a href="#" class="nav-link" data-page="math">Matemáticas</a></li>
-                        <li><a href="#" class="nav-link" data-page="language">Lenguaje</a></li>
+                        <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Lengua-Castellana/">Lenguaje</a></li>
                         <li><a href="#" class="nav-link" data-page="science">Ciencias</a></li>
                         <li><a href="#" class="nav-link" data-page="social">Sociales</a></li>
                     </ul>
