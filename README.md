@@ -1208,113 +1208,453 @@
             totalAnswers: 0
         };
 
-        // Exercise data (50+ unique questions per category and level)
+        // Generadores de ejercicios únicos
+        function generateAlgebraBasicExercise(id) {
+            const a = Math.floor(Math.random() * 10) + 1; // Coeficiente de x
+            const b = Math.floor(Math.random() * 20) - 10; // Término constante
+            const c = Math.floor(Math.random() * 20) - 10; // Resultado
+            const x = (c - b) / a; // Solución
+            if (!Number.isInteger(x) || x < -10 || x > 10) return generateAlgebraBasicExercise(id); // Asegurar solución entera razonable
+            const question = `Resuelve la ecuación: <strong>${a}x ${b >= 0 ? '+' : ''} ${b} = ${c}</strong>`;
+            const correctAnswer = `x = ${x}`;
+            const options = [
+                { text: correctAnswer, correct: true },
+                { text: `x = ${x + Math.floor(Math.random() * 4) - 2}`, correct: false },
+                { text: `x = ${x + Math.floor(Math.random() * 4) - 2}`, correct: false },
+                { text: `x = ${x + Math.floor(Math.random() * 4) - 2}`, correct: false }
+            ].sort(() => Math.random() - 0.5); // Mezclar opciones
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! La solución es ${correctAnswer}.`,
+                feedbackIncorrect: `Incorrecto. La solución correcta es ${correctAnswer}.`
+            };
+        }
+
+        function generateAlgebraIntermediateExercise(id) {
+            const a1 = Math.floor(Math.random() * 5) + 1;
+            const b1 = Math.floor(Math.random() * 5) + 1;
+            const c1 = Math.floor(Math.random() * 10) + 1;
+            const a2 = Math.floor(Math.random() * 5) + 1;
+            const b2 = Math.floor(Math.random() * 5) + 1;
+            const c2 = Math.floor(Math.random() * 10) + 1;
+            const det = a1 * b2 - a2 * b1;
+            if (det === 0) return generateAlgebraIntermediateExercise(id); // Evitar sistemas sin solución única
+            const x = (c1 * b2 - c2 * b1) / det;
+            const y = (a1 * c2 - a2 * c1) / det;
+            if (!Number.isInteger(x) || !Number.isInteger(y) || Math.abs(x) > 10 || Math.abs(y) > 10) return generateAlgebraIntermediateExercise(id); // Soluciones enteras
+            const question = `Resuelve el sistema: <strong>${a1}x + ${b1}y = ${c1}, ${a2}x + ${b2}y = ${c2}</strong>`;
+            const correctAnswer = `x = ${x}, y = ${y}`;
+            const options = [
+                { text: correctAnswer, correct: true },
+                { text: `x = ${x + 1}, y = ${y - 1}`, correct: false },
+                { text: `x = ${x - 1}, y = ${y + 1}`, correct: false },
+                { text: `x = ${x + 2}, y = ${y - 2}`, correct: false }
+            ].sort(() => Math.random() - 0.5);
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! La solución es ${correctAnswer}.`,
+                feedbackIncorrect: `Incorrecto. La solución correcta es ${correctAnswer}.`
+            };
+        }
+
+        function generateAlgebraAdvancedExercise(id) {
+            const a = Math.floor(Math.random() * 5) + 1;
+            const b = Math.floor(Math.random() * 10) - 5;
+            const c = Math.floor(Math.random() * 10) - 5;
+            const discriminant = b * b - 4 * a * c;
+            if (discriminant < 0) return generateAlgebraAdvancedExercise(id); // Evitar raíces complejas
+            const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            if (!Number.isInteger(x1) || !Number.isInteger(x2)) return generateAlgebraAdvancedExercise(id); // Soluciones enteras
+            const question = `Resuelve: <strong>${a}x² ${b >= 0 ? '+' : ''} ${b}x ${c >= 0 ? '+' : ''} ${c} = 0</strong>`;
+            const correctAnswer = `x = ${x1}, x = ${x2}`;
+            const options = [
+                { text: correctAnswer, correct: true },
+                { text: `x = ${x1 + 1}, x = ${x2 - 1}`, correct: false },
+                { text: `x = ${x1 - 1}, x = ${x2 + 1}`, correct: false },
+                { text: `x = ${x1}, x = ${x2 + 2}`, correct: false }
+            ].sort(() => Math.random() - 0.5);
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! Las soluciones son ${correctAnswer}.`,
+                feedbackIncorrect: `Incorrecto. Las soluciones correctas son ${correctAnswer}.`
+            };
+        }
+
+        function generateGeometryBasicExercise(id) {
+            const type = Math.random() < 0.5 ? 'triangle' : 'circle';
+            if (type === 'triangle') {
+                const base = Math.floor(Math.random() * 10) + 2;
+                const height = Math.floor(Math.random() * 10) + 2;
+                const area = (base * height) / 2;
+                const question = `Calcula el área de un triángulo con base de ${base} cm y altura de ${height} cm`;
+                const options = [
+                    { text: `${area} cm²`, correct: true },
+                    { text: `${area + Math.floor(Math.random() * 10)} cm²`, correct: false },
+                    { text: `${area - Math.floor(Math.random() * 5)} cm²`, correct: false },
+                    { text: `${(base * height)} cm²`, correct: false }
+                ].sort(() => Math.random() - 0.5);
+                return {
+                    id,
+                    question,
+                    options,
+                    feedbackCorrect: `¡Correcto! El área es ${area} cm².`,
+                    feedbackIncorrect: `Incorrecto. El área del triángulo es base × altura / 2 = ${area} cm².`
+                };
+            } else {
+                const radius = Math.floor(Math.random() * 10) + 1;
+                const area = 3.14 * radius * radius;
+                const question = `Calcula el área de un círculo con radio de ${radius} cm (usa π = 3.14)`;
+                const options = [
+                    { text: `${area.toFixed(2)} cm²`, correct: true },
+                    { text: `${(area + Math.random() * 10).toFixed(2)} cm²`, correct: false },
+                    { text: `${(area - Math.random() * 5).toFixed(2)} cm²`, correct: false },
+                    { text: `${(3.14 * radius).toFixed(2)} cm²`, correct: false }
+                ].sort(() => Math.random() - 0.5);
+                return {
+                    id,
+                    question,
+                    options,
+                    feedbackCorrect: `¡Correcto! El área es ${area.toFixed(2)} cm².`,
+                    feedbackIncorrect: `Incorrecto. El área del círculo es πr² = ${area.toFixed(2)} cm².`
+                };
+            }
+        }
+
+        function generateGeometryIntermediateExercise(id) {
+            const a = Math.floor(Math.random() * 10) + 2;
+            const b = Math.floor(Math.random() * 10) + 2;
+            const c = Math.sqrt(a * a + b * b);
+            if (!Number.isInteger(c)) return generateGeometryIntermediateExercise(id); // Solución entera
+            const question = `En un triángulo rectángulo, los catetos miden ${a} cm y ${b} cm. Calcula la hipotenusa.`;
+            const options = [
+                { text: `${c} cm`, correct: true },
+                { text: `${c + Math.floor(Math.random() * 3)} cm`, correct: false },
+                { text: `${c - Math.floor(Math.random() * 3)} cm`, correct: false },
+                { text: `${a + b} cm`, correct: false }
+            ].sort(() => Math.random() - 0.5);
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! La hipotenusa es ${c} cm.`,
+                feedbackIncorrect: `Incorrecto. Usa el teorema de Pitágoras: a² + b² = c².`
+            };
+        }
+
+        function generateGeometryAdvancedExercise(id) {
+            const angles = [30, 45, 60];
+            const angle = angles[Math.floor(Math.random() * angles.length)];
+            const func = Math.random() < 0.5 ? 'sin' : 'cos';
+            const value = func === 'sin' ? 
+                (angle === 30 ? '1/2' : angle === 45 ? '√2/2' : '√3/2') : 
+                (angle === 30 ? '√3/2' : angle === 45 ? '√2/2' : '1/2');
+            const question = `Calcula el ${func} de ${angle}°.`;
+            const options = [
+                { text: value, correct: true },
+                { text: ['1/2', '√3/2', '√2/2', '1', '0'].filter(v => v !== value)[Math.floor(Math.random() * 4)], correct: false },
+                { text: ['1/2', '√3/2', '√2/2', '1', '0'].filter(v => v !== value)[Math.floor(Math.random() * 3)], correct: false },
+                { text: '0', correct: false }
+            ].sort(() => Math.random() - 0.5);
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! El valor es ${value}.`,
+                feedbackIncorrect: `Incorrecto. El valor correcto es ${value}.`
+            };
+        }
+
+        function generateCalculusBasicExercise(id) {
+            const a = Math.floor(Math.random() * 5) + 1;
+            const b = Math.floor(Math.random() * 5) + 1;
+            const c = Math.floor(Math.random() * 10) - 5;
+            const question = `Calcula la derivada de f(x) = ${a}x² ${b >= 0 ? '+' : ''} ${b}x ${c >= 0 ? '+' : ''} ${c}`;
+            const answer = `${2 * a}x ${b >= 0 ? '+' : ''} ${b}`;
+            return {
+                id,
+                question,
+                answer,
+                feedbackCorrect: `¡Correcto! La derivada es ${answer}.`,
+                feedbackIncorrect: `Incorrecto. La derivada correcta es ${answer}.`
+            };
+        }
+
+        function generateCalculusIntermediateExercise(id) {
+            const a = Math.floor(Math.random() * 5) + 1;
+            const n = Math.floor(Math.random() * 3) + 2; // Exponente entre 2 y 4
+            const question = `Calcula la integral de f(x) = ${a}x^${n}`;
+            const answer = `${(a / (n + 1)).toFixed(2)}x^${n + 1} + C`;
+            return {
+                id,
+                question,
+                answer,
+                feedbackCorrect: `¡Correcto! La integral es ${answer}.`,
+                feedbackIncorrect: `Incorrecto. La integral correcta es ${answer}.`
+            };
+        }
+
+        function generateCalculusAdvancedExercise(id) {
+            const type = Math.random() < 0.5 ? 'sin' : 'cos';
+            const question = `Calcula el límite: lim(x→0) (${type === 'sin' ? 'sin(x)/x' : '(1 - cos(x))/x²'})`;
+            const options = type === 'sin' ? [
+                { text: '1', correct: true },
+                { text: '0', correct: false },
+                { text: '∞', correct: false },
+                { text: 'No existe', correct: false }
+            ] : [
+                { text: '1/2', correct: true },
+                { text: '1', correct: false },
+                { text: '0', correct: false },
+                { text: 'No existe', correct: false }
+            ].sort(() => Math.random() - 0.5);
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! El límite es ${type === 'sin' ? '1' : '1/2'}.`,
+                feedbackIncorrect: `Incorrecto. El límite correcto es ${type === 'sin' ? '1' : '1/2'}.`
+            };
+        }
+
+        function generateArithmeticBasicExercise(id) {
+            const num = Math.floor(Math.random() * 50) + 10;
+            const den = Math.floor(Math.random() * 50) + 10;
+            const gcd = (a, b) => b ? gcd(b, a % b) : a;
+            const divisor = gcd(num, den);
+            const question = `Simplifica la fracción: ${num}/${den}`;
+            const simplified = `${num / divisor}/${den / divisor}`;
+            const options = [
+                { text: simplified, correct: true },
+                { text: `${num}/${den - 1}`, correct: false },
+                { text: `${num - 1}/${den}`, correct: false },
+                { text: `${num + 1}/${den + 1}`, correct: false }
+            ].sort(() => Math.random() - 0.5);
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! La fracción simplificada es ${simplified}.`,
+                feedbackIncorrect: `Incorrecto. El máximo común divisor da ${simplified}.`
+            };
+        }
+
+        function generateArithmeticIntermediateExercise(id) {
+            const percent = Math.floor(Math.random() * 50) + 10;
+            const total = Math.floor(Math.random() * 100) + 50;
+            const result = (percent / 100) * total;
+            const question = `¿Cuánto es el ${percent}% de ${total}?`;
+            const options = [
+                { text: result.toFixed(2), correct: true },
+                { text: (result + Math.random() * 10).toFixed(2), correct: false },
+                { text: (result - Math.random() * 10).toFixed(2), correct: false },
+                { text: (result + Math.random() * 5).toFixed(2), correct: false }
+            ].sort(() => Math.random() - 0.5);
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! El resultado es ${result.toFixed(2)}.`,
+                feedbackIncorrect: `Incorrecto. Calcula: (${percent}/100) × ${total} = ${result.toFixed(2)}.`
+            };
+        }
+
+        function generateArithmeticAdvancedExercise(id) {
+            const quantity = Math.floor(Math.random() * 10) + 1;
+            const cost = Math.floor(Math.random() * 20) + 5;
+            const newQuantity = Math.floor(Math.random() * 10) + 1;
+            const newCost = (cost / quantity) * newQuantity;
+            if (!Number.isInteger(newCost)) return generateArithmeticAdvancedExercise(id); // Solución entera
+            const question = `Si ${quantity} kg de frutas cuestan $${cost}, ¿cuánto cuestan ${newQuantity} kg?`;
+            const options = [
+                { text: `$${newCost}`, correct: true },
+                { text: `$${(newCost + Math.floor(Math.random() * 5))}`, correct: false },
+                { text: `$${(newCost - Math.floor(Math.random() * 5))}`, correct: false },
+                { text: `$${(cost + newQuantity)}`, correct: false }
+            ].sort(() => Math.random() - 0.5);
+            return {
+                id,
+                question,
+                options,
+                feedbackCorrect: `¡Correcto! El costo es $${newCost}.`,
+                feedbackIncorrect: `Incorrecto. Usa la proporción: (${cost}/${quantity}) × ${newQuantity} = $${newCost}.`
+            };
+        }
+
+        // Nueva constante exercises con 50 ejercicios únicos por categoría y nivel
         const exercises = {
             algebra: {
-                basic: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Resuelve la ecuación lineal: <strong>${i % 5 === 0 ? `4x + 3 = 15` : i % 5 === 1 ? `7x - 2 = 19` : i % 5 === 2 ? `5x + 8 = 23` : i % 5 === 3 ? `2x - 9 = 7` : `6x + 4 = 22`}</strong>`,
-                    options: [
-                        { text: i % 5 === 0 ? "x = 3" : i % 5 === 1 ? "x = 3" : i % 5 === 2 ? "x = 3" : i % 5 === 3 ? "x = 8" : "x = 3", correct: i % 5 === 0 || i % 5 === 1 || i % 5 === 2 || i % 5 === 4 },
-                        { text: i % 5 === 0 ? "x = 4" : i % 5 === 1 ? "x = 4" : i % 5 === 2 ? "x = 5" : i % 5 === 3 ? "x = 7" : "x = 5", correct: i % 5 === 3 },
-                        { text: i % 5 === 0 ? "x = 5" : i % 5 === 1 ? "x = 2" : i % 5 === 2 ? "x = 4" : i % 5 === 3 ? "x = 9" : "x = 4", correct: false },
-                        { text: i % 5 === 0 ? "x = 2" : i % 5 === 1 ? "x = 5" : i % 5 === 2 ? "x = 6" : i % 5 === 3 ? "x = 6" : "x = 6", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! La solución es ${i % 5 === 0 ? 'x = 3' : i % 5 === 1 ? 'x = 3' : i % 5 === 2 ? 'x = 3' : i % 5 === 3 ? 'x = 8' : 'x = 3'}.`,
-                    feedbackIncorrect: `Incorrecto. La solución correcta es ${i % 5 === 0 ? 'x = 3' : i % 5 === 1 ? 'x = 3' : i % 5 === 2 ? 'x = 3' : i % 5 === 3 ? 'x = 8' : 'x = 3'}. Resuelve paso a paso: despeja x.`
-                })),
-                intermediate: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Resuelve el sistema de ecuaciones: <strong>${i % 5 === 0 ? `x + 2y = 7, 3x - y = 4` : i % 5 === 1 ? `2x + 3y = 11, x - y = 1` : i % 5 === 2 ? `4x + y = 10, 2x - y = 2` : i % 5 === 3 ? `3x + 4y = 17, x - 2y = -1` : `5x - y = 8, 2x + y = 7`}</strong>`,
-                    options: [
-                        { text: i % 5 === 0 ? "x = 3, y = 2" : i % 5 === 1 ? "x = 4, y = 3" : i % 5 === 2 ? "x = 2, y = 2" : i % 5 === 3 ? "x = 5, y = 1" : "x = 3, y = 1", correct: true },
-                        { text: i % 5 === 0 ? "x = 2, y = 3" : i % 5 === 1 ? "x = 3, y = 2" : i % 5 === 2 ? "x = 1, y = 3" : i % 5 === 3 ? "x = 4, y = 2" : "x = 2, y = 2", correct: false },
-                        { text: i % 5 === 0 ? "x = 4, y = 1" : i % 5 === 1 ? "x = 2, y = 1" : i % 5 === 2 ? "x = 3, y = 1" : i % 5 === 3 ? "x = 3, y = 3" : "x = 4, y = 0", correct: false },
-                        { text: i % 5 === 0 ? "x = 1, y = 4" : i % 5 === 1 ? "x = 5, y = 4" : i % 5 === 2 ? "x = 4, y = 0" : i % 5 === 3 ? "x = 2, y = 4" : "x = 1, y = 3", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! La solución es ${i % 5 === 0 ? 'x = 3, y = 2' : i % 5 === 1 ? 'x = 4, y = 3' : i % 5 === 2 ? 'x = 2, y = 2' : i % 5 === 3 ? 'x = 5, y = 1' : 'x = 3, y = 1'}.`,
-                    feedbackIncorrect: `Incorrecto. La solución correcta es ${i % 5 === 0 ? 'x = 3, y = 2' : i % 5 === 1 ? 'x = 4, y = 3' : i % 5 === 2 ? 'x = 2, y = 2' : i % 5 === 3 ? 'x = 5, y = 1' : 'x = 3, y = 1'}. Usa eliminación o sustitución.`
-                })),
-                advanced: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Resuelve la ecuación cuadrática: <strong>${i % 5 === 0 ? `x² - 7x + 12 = 0` : i % 5 === 1 ? `2x² - 8x + 6 = 0` : i % 5 === 2 ? `x² + 2x - 15 = 0` : i % 5 === 3 ? `3x² - 5x - 2 = 0` : `x² - 4x - 5 = 0`}</strong>`,
-                    options: [
-                        { text: i % 5 === 0 ? "x = 3, x = 4" : i % 5 === 1 ? "x = 1, x = 3" : i % 5 === 2 ? "x = 3, x = -5" : i % 5 === 3 ? "x = 2, x = -1/3" : "x = 5, x = -1", correct: true },
-                        { text: i % 5 === 0 ? "x = 2, x = 5" : i % 5 === 1 ? "x = 2, x = 4" : i % 5 === 2 ? "x = 2, x = -3" : i % 5 === 3 ? "x = 1, x = -2" : "x = 4, x = -2", correct: false },
-                        { text: i % 5 === 0 ? "x = 1, x = 6" : i % 5 === 1 ? "x = 0, x = 5" : i % 5 === 2 ? "x = 1, x = -4" : i % 5 === 3 ? "x = 3, x = -1" : "x = 3, x = -3", correct: false },
-                        { text: i % 5 === 0 ? "x = 0, x = 7" : i % 5 === 1 ? "x = -1, x = 6" : i % 5 === 2 ? "x = 0, x = -5" : i % 5 === 3 ? "x = 0, x = -2" : "x = 2, x = -4", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! Las soluciones son ${i % 5 === 0 ? 'x = 3, x = 4' : i % 5 === 1 ? 'x = 1, x = 3' : i % 5 === 2 ? 'x = 3, x = -5' : i % 5 === 3 ? 'x = 2, x = -1/3' : 'x = 5, x = -1'}.`,
-                    feedbackIncorrect: `Incorrecto. Las soluciones correctas son ${i % 5 === 0 ? 'x = 3, x = 4' : i % 5 === 1 ? 'x = 1, x = 3' : i % 5 === 2 ? 'x = 3, x = -5' : i % 5 === 3 ? 'x = 2, x = -1/3' : 'x = 5, x = -1'}. Usa la fórmula cuadrática o factorización.`
-                }))
+                basic: Array.from({ length: 50 }, (_, i) => generateAlgebraBasicExercise(i + 1)),
+                intermediate: Array.from({ length: 50 }, (_, i) => generateAlgebraIntermediateExercise(i + 1)),
+                advanced: Array.from({ length: 50 }, (_, i) => generateAlgebraAdvancedExercise(i + 1))
             },
             geometry: {
-                basic: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula el área de un ${i % 5 === 0 ? `rectángulo con largo 8 cm y ancho 5 cm` : i % 5 === 1 ? `triángulo con base 10 cm y altura 6 cm` : i % 5 === 2 ? `círculo con radio 4 cm (usa π = 3.14)` : i % 5 === 3 ? `cuadrado con lado 7 cm` : `trapecio con bases 6 cm y 4 cm, altura 5 cm`}`,
-                    options: [
-                        { text: i % 5 === 0 ? "40 cm²" : i % 5 === 1 ? "30 cm²" : i % 5 === 2 ? "50.24 cm²" : i % 5 === 3 ? "49 cm²" : "25 cm²", correct: true },
-                        { text: i % 5 === 0 ? "32 cm²" : i % 5 === 1 ? "25 cm²" : i % 5 === 2 ? "48 cm²" : i % 5 === 3 ? "42 cm²" : "20 cm²", correct: false },
-                        { text: i % 5 === 0 ? "45 cm²" : i % 5 === 1 ? "35 cm²" : i % 5 === 2 ? "52 cm²" : i % 5 === 3 ? "56 cm²" : "30 cm²", correct: false },
-                        { text: i % 5 === 0 ? "38 cm²" : i % 5 === 1 ? "28 cm²" : i % 5 === 2 ? "46 cm²" : i % 5 === 3 ? "45 cm²" : "22 cm²", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! El área es ${i % 5 === 0 ? '40 cm²' : i % 5 === 1 ? '30 cm²' : i % 5 === 2 ? '50.24 cm²' : i % 5 === 3 ? '49 cm²' : '25 cm²'}.`,
-                    feedbackIncorrect: `Incorrecto. Usa la fórmula correcta: ${i % 5 === 0 ? 'largo × ancho' : i % 5 === 1 ? 'base × altura / 2' : i % 5 === 2 ? 'πr²' : i % 5 === 3 ? 'lado²' : '(base1 + base2) × altura / 2'}.`
-                })),
-                intermediate: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `En un triángulo rectángulo, los catetos miden ${i % 5 === 0 ? `6 cm y 8 cm` : i % 5 === 1 ? `9 cm y 12 cm` : i % 5 === 2 ? `5 cm y 7 cm` : i % 5 === 3 ? `8 cm y 15 cm` : `7 cm y 24 cm`}. Calcula la hipotenusa.`,
-                    options: [
-                        { text: i % 5 === 0 ? "10 cm" : i % 5 === 1 ? "15 cm" : i % 5 === 2 ? "8.60 cm" : i % 5 === 3 ? "17 cm" : "25 cm", correct: true },
-                        { text: i % 5 === 0 ? "12 cm" : i % 5 === 1 ? "14 cm" : i % 5 === 2 ? "9 cm" : i % 5 === 3 ? "16 cm" : "26 cm", correct: false },
-                        { text: i % 5 === 0 ? "11 cm" : i % 5 === 1 ? "13 cm" : i % 5 === 2 ? "7 cm" : i % 5 === 3 ? "18 cm" : "23 cm", correct: false },
-                        { text: i % 5 === 0 ? "9 cm" : i % 5 === 1 ? "16 cm" : i % 5 === 2 ? "10 cm" : i % 5 === 3 ? "19 cm" : "22 cm", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! La hipotenusa es ${i % 5 === 0 ? '10 cm' : i % 5 === 1 ? '15 cm' : i % 5 === 2 ? '8.60 cm' : i % 5 === 3 ? '17 cm' : '25 cm'}.`,
-                    feedbackIncorrect: `Incorrecto. Usa el teorema de Pitágoras: a² + b² = c².`
-                })),
-                advanced: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula el ${i % 5 === 0 ? `seno de 45°` : i % 5 === 1 ? `coseno de 30°` : i % 5 === 2 ? `tangente de 60°` : i % 5 === 3 ? `seno de 60°` : `coseno de 45°`}.`,
-                    options: [
-                        { text: i % 5 === 0 ? "√2/2" : i % 5 === 1 ? "√3/2" : i % 5 === 2 ? "√3" : i % 5 === 3 ? "√3/2" : "√2/2", correct: true },
-                        { text: i % 5 === 0 ? "1/2" : i % 5 === 1 ? "1/2" : i % 5 === 2 ? "1" : i % 5 === 3 ? "1/2" : "1/2", correct: false },
-                        { text: i % 5 === 0 ? "√3/2" : i % 5 === 1 ? "√2/2" : i % 5 === 2 ? "1/√3" : i % 5 === 3 ? "√2/2" : "√3/2", correct: false },
-                        { text: i % 5 === 0 ? "1" : i % 5 === 1 ? "0" : i % 5 === 2 ? "0" : i % 5 === 3 ? "1" : "0", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! El valor es ${i % 5 === 0 ? '√2/2' : i % 5 === 1 ? '√3/2' : i % 5 === 2 ? '√3' : i % 5 === 3 ? '√3/2' : '√2/2'}.`,
-                    feedbackIncorrect: `Incorrecto. El valor correcto es ${i % 5 === 0 ? '√2/2' : i % 5 === 1 ? '√3/2' : i % 5 === 2 ? '√3' : i % 5 === 3 ? '√3/2' : '√2/2'}. Revisa las identidades trigonométricas.`
-                }))
+                basic: Array.from({ length: 50 }, (_, i) => generateGeometryBasicExercise(i + 1)),
+                intermediate: Array.from({ length: 50 }, (_, i) => generateGeometryIntermediateExercise(i + 1)),
+                advanced: Array.from({ length: 50 }, (_, i) => generateGeometryAdvancedExercise(i + 1))
             },
             calculus: {
-                basic: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula la derivada de f(x) = ${i % 5 === 0 ? `5x² - 3x + 7` : i % 5 === 1 ? `2x³ + 4x` : i % 5 === 2 ? `x^4 - 2x²` : i % 5 === 3 ? `6x - 9` : `x³ + 5x² - 2`}`,
-                    answer: i % 5 === 0 ? "10x - 3" : i % 5 === 1 ? "6x² + 4" : i % 5 === 2 ? "4x³ - 4x" : i % 5 === 3 ? "6" : "3x² + 10x",
-                    feedbackCorrect: `¡Correcto! La derivada es ${i % 5 === 0 ? '10x - 3' : i % 5 === 1 ? '6x² + 4' : i % 5 === 2 ? '4x³ - 4x' : i % 5 === 3 ? '6' : '3x² + 10x'}.`,
-                    feedbackIncorrect: `Incorrecto. La derivada correcta es ${i % 5 === 0 ? '10x - 3' : i % 5 === 1 ? '6x² + 4' : i % 5 === 2 ? '4x³ - 4x' : i % 5 === 3 ? '6' : '3x² + 10x'}. Aplica la regla de la potencia.`
-                })),
-                intermediate: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula la integral indefinida de f(x) = ${i % 5 === 0 ? `6x²` : i % 5 === 1 ? `2x + 5` : i % 5 === 2 ? `3x^4` : i % 5 === 3 ? `x³ - 2x` : `4x^5 + 3`}`,
-                    answer: i % 5 === 0 ? "2x³ + C" : i % 5 === 1 ? "x² + 5x + C" : i % 5 === 2 ? "(3/5)x^5 + C" : i % 5 === 3 ? "(1/4)x^4 - x² + C" : "(2/3)x^6 + 3x + C",
-                    feedbackCorrect: `¡Correcto! La integral es ${i % 5 === 0 ? '2x³ + C' : i % 5 === 1 ? 'x² + 5x + C' : i % 5 === 2 ? '(3/5)x^5 + C' : i % 5 === 3 ? '(1/4)x^4 - x² + C' : '(2/3)x^6 + 3x + C'}.`,
-                    feedbackIncorrect: `Incorrecto. La integral correcta es ${i % 5 === 0 ? '2x³ + C' : i % 5 === 1 ? 'x² + 5x + C' : i % 5 === 2 ? '(3/5)x^5 + C' : i % 5 === 3 ? '(1/4)x^4 - x² + C' : '(2/3)x^6 + 3x + C'}. Revisa la regla de integración.`
-                })),
-                advanced: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula el límite: lim(x→${i % 5 === 0 ? `0` : i % 5 === 1 ? `∞` : i % 5 === 2 ? `2` : i % 5 === 3 ? `0` : `1`}) (${i % 5 === 0 ? `(1 - cos(x))/x` : i % 5 === 1 ? `x/(x + 1)` : i % 5 === 2 ? `(x² - 4)/(x - 2)` : i % 5 === 3 ? `sin(3x)/x` : `(x² - 1)/(x - 1)`})`,
-                    options: [
-                        { text: i % 5 === 0 ? "0" : i % 5 === 1 ? "1" : i % 5 === 2 ? "4" : i % 5 === 3 ? "3" : "2", correct: true },
-                        { text: i % 5 === 0 ? "1" : i % 5 === 1 ? "0" : i % 5 === 2 ? "3" : i % 5 === 3 ? "2" : "1", correct: false },
-                        { text: i % 5 === 0 ? "∞" : i % 5 === 1 ? "∞" : i % 5 === 2 ? "5" : i % 5 === 3 ? "1" : "3", correct: false },
-                        { text: i % 5 === 0 ? "No existe" : i % 5 === 1 ? "2" : i % 5 === 2 ? "No existe" : i % 5 === 3 ? "0" : "0", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! El límite es ${i % 5 === 0 ? '0' : i % 5 === 1 ? '1' : i % 5 === 2 ? '4' : i % 5 === 3 ? '3' : '2'}.`,
-                    feedbackIncorrect: `Incorrecto. El límite correcto es ${i % 5 === 0 ? '0' : i % 5 === 1 ? '1' : i % 5 === 2 ? '4' : i % 5 === 3 ? '3' : '2'}. Usa L'Hôpital o simplificación según corresponda.`
-                }))
+                basic: Array.from({ length: 50 }, (_, i) => generateCalculusBasicExercise(i + 1)),
+                intermediate: Array.from({ length: 50 }, (_, i) => generateCalculusIntermediateExercise(i + 1)),
+                advanced: Array.from({ length: 50 }, (_, i) => generateCalculusAdvancedExercise(i + 1))
             },
             arithmetic: {
-                basic: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Simplifica la fracción: ${i % 5 === 0 ? `12/
+                basic: Array.from({ length: 50 }, (_, i) => generateArithmeticBasicExercise(i + 1)),
+                intermediate: Array.from({ length: 50 }, (_, i) => generateArithmeticIntermediateExercise(i + 1)),
+                advanced: Array.from({ length: 50 }, (_, i) => generateArithmeticAdvancedExercise(i + 1))
+            }
+        };
+
+        // Navigation handling
+        function showPage(pageId) {
+            document.querySelectorAll('.subject-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.querySelector(`#${pageId}-page`).classList.add('active');
+            // Initialize exercises for subject pages
+            if (['algebra', 'geometry', 'calculus', 'arithmetic'].includes(pageId)) {
+                showSubject(pageId);
+            }
+        }
+
+        function showSubject(subject) {
+            showPage(subject);
+            const defaultTab = document.querySelector(`#${subject}-page .exercise-tab.active`);
+            if (defaultTab) {
+                const tabId = defaultTab.dataset.tab;
+                showExerciseTab(subject, tabId);
+            }
+        }
+
+        function showExerciseTab(subject, tabId) {
+            const page = document.querySelector(`#${subject}-page`);
+            page.querySelectorAll('.exercise-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            page.querySelectorAll('.exercise-container').forEach(container => {
+                container.classList.remove('active');
+            });
+            page.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            const container = page.querySelector(`#${tabId}-exercises`);
+            container.classList.add('active');
+            loadExercise(subject, tabId.split('-')[1], 1); // Load first exercise
+        }
+
+        function loadExercise(subject, level, exerciseId) {
+            const exercise = exercises[subject][level].find(ex => ex.id === exerciseId);
+            const container = document.querySelector(`#${subject}-page #${subject}-${level}-exercises`);
+            container.querySelector('.exercise-counter').textContent = exerciseId;
+            container.querySelector('.exercise-question').innerHTML = exercise.question;
+            container.querySelector('.feedback-correct').textContent = exercise.feedbackCorrect;
+            container.querySelector('.feedback-incorrect').textContent = exercise.feedbackIncorrect;
+            
+            const optionsContainer = container.querySelector('.options-container');
+            const inputAnswer = container.querySelector('.input-answer');
+            if (exercise.options) {
+                optionsContainer.style.display = 'grid';
+                if (inputAnswer) inputAnswer.style.display = 'none';
+                optionsContainer.innerHTML = exercise.options.map(opt => 
+                    `<div class="option" data-correct="${opt.correct}">${opt.text}</div>`
+                ).join('');
+            } else {
+                optionsContainer.style.display = 'none';
+                if (inputAnswer) {
+                    inputAnswer.style.display = 'block';
+                    inputAnswer.value = '';
+                }
+            }
+            
+            container.querySelector('.check-answer-btn').style.display = 'block';
+            container.querySelector('.next-question-btn').style.display = 'none';
+            container.querySelectorAll('.exercise-feedback').forEach(fb => {
+                fb.style.display = 'none';
+            });
+            container.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize home page
+            showPage('home');
+
+            // Navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = link.dataset.page;
+                    if (['home', 'science', 'social'].includes(page)) {
+                        window.location.href = link.getAttribute('href');
+                    } else {
+                        showPage(page);
+                    }
+                });
+            });
+
+            // Subject practice buttons
+            document.querySelectorAll('.practice-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const subject = btn.dataset.subject;
+                    showSubject(subject);
+                });
+            });
+
+            // Exercise tabs
+            document.querySelectorAll('.exercise-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const subject = tab.closest('.subject-page').id.split('-')[0];
+                    const tabId = tab.dataset.tab;
+                    showExerciseTab(subject, tabId);
+                });
+            });
+
+            // Check answer buttons
+            document.querySelectorAll('.check-answer-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const container = btn.closest('.exercise-container');
+                    const subject = container.closest('.subject-page').id.split('-')[0];
+                    const level = container.id.split('-')[1];
+                    const exerciseId = parseInt(container.querySelector('.exercise-counter').textContent);
+                    const exercise = exercises[subject][level].find(ex => ex.id === exerciseId);
+                    
+                    let isCorrect = false;
+                    if (exercise.options) {
+                        const selectedOption = container.querySelector('.option.selected');
+                        isCorrect = selectedOption && selectedOption.dataset.correct === 'true';
+                    } else {
+                        const input = container.querySelector('.input-answer');
+                        isCorrect = input && input.value.trim() === exercise.answer;
+                    }
+                    
+                    container.querySelector(isCorrect ? '.feedback-correct' : '.feedback-incorrect').style.display = 'block';
+                    container.querySelector(isCorrect ? '.feedback-incorrect' : '.feedback-correct').style.display = 'none';
+                    container.querySelector('.check-answer-btn').style.display = 'none';
+                    container.querySelector('.next-question-btn').style.display = 'block';
+                    
+                    if (exercise.options) {
+                        container.querySelectorAll('.option').forEach(opt => {
+                            opt.classList.add(opt.dataset.correct === 'true' ? 'correct' : 'incorrect');
+                        });
+                    }
+                    
+                    userData.completedExercises++;
+                    userData.totalAnswers++;
+                    if (isCorrect) userData.correctAnswers++;
+                    updateUserStats();
+                });
+            });
+
+            // Option selection
+            document.querySelectorAll('.options-container').forEach(container => {
+                container.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('option')) {
+                        container.querySelectorAll('.option').forEach
