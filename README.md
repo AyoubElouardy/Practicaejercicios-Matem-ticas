@@ -1,14 +1,3 @@
-Solución: Ejercicios sin repetición y respuestas aleatorizadas
-
-He corregido el código para que:
-
-1. No se repitan las preguntas hasta completar todas
-2. Las respuestas se muestren en orden aleatorio
-3. Se mantenga un registro del progreso real
-
-Aquí está el código completo:
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
