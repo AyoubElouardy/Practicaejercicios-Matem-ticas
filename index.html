@@ -363,6 +363,8 @@
             border-radius: 5px;
             background-color: #f8f9fa;
             transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
         
         .back-button:hover {
@@ -436,6 +438,37 @@
             left: 0;
         }
         
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+            height: 1rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar-inner {
+            height: 100%;
+            background-color: var(--success-color);
+            border-radius: 0.25rem;
+            transition: width 0.3s ease;
+        }
+        
+        .completed-message {
+            text-align: center;
+            padding: 2rem;
+            background-color: #d4edda;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+        }
+        
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -456,6 +489,7 @@
         
         .footer-column ul {
             list-style: none;
+            margin-bottom: 1rem;
         }
         
         .footer-column ul li {
@@ -537,6 +571,16 @@
             
             .exercise-tab.active {
                 border: 1px solid #ddd;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .navigation-buttons .btn {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -700,12 +744,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-grammar check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-grammar next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-grammar next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-grammar restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
                 <div class="exercise-container" id="grammar-intermediate-exercises">
                     <div class="exercise-header">
@@ -715,12 +770,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-grammar check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-grammar next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-grammar next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-grammar restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
                 <div class="exercise-container" id="grammar-advanced-exercises">
                     <div class="exercise-header">
@@ -730,12 +796,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-grammar check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-grammar next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-grammar next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-grammar restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -759,12 +836,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-spelling check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-spelling next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-spelling next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-spelling restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
                 <div class="exercise-container" id="spelling-intermediate-exercises">
                     <div class="exercise-header">
@@ -774,12 +862,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-spelling check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-spelling next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-spelling next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-spelling restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
                 <div class="exercise-container" id="spelling-advanced-exercises">
                     <div class="exercise-header">
@@ -789,12 +888,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-spelling check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-spelling next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-spelling next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-spelling restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -818,12 +928,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-reading check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-reading next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-reading next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-reading restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
                 <div class="exercise-container" id="reading-intermediate-exercises">
                     <div class="exercise-header">
@@ -833,12 +954,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-reading check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-reading next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-reading next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-reading restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
                 <div class="exercise-container" id="reading-advanced-exercises">
                     <div class="exercise-header">
@@ -848,12 +980,23 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 2%;"></div>
+                    </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-reading check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-reading next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline prev-question-btn" style="display: none;">Anterior</button>
+                        <button class="btn btn-reading next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    </div>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
+                    <div class="completed-message">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado todos los ejercicios de esta sección.</p>
+                        <button class="btn btn-reading restart-exercises-btn">Reiniciar ejercicios</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1467,6 +1610,23 @@
             }
         };
 
+        // Estado global para rastrear ejercicios completados
+        const userProgress = {
+            grammar: { basic: [], intermediate: [], advanced: [] },
+            spelling: { basic: [], intermediate: [], advanced: [] },
+            reading: { basic: [], intermediate: [], advanced: [] }
+        };
+
+        // Función para mezclar array (algoritmo Fisher-Yates)
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
         // Navigation handling
         function showPage(pageId) {
             document.querySelectorAll('.subject-page').forEach(page => {
@@ -1499,23 +1659,62 @@
             page.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
             const container = page.querySelector(`#${tabId}-exercises`);
             container.classList.add('active');
-            loadExercise(subject, tabId.split('-')[1], 1); // Load first exercise
+            
+            const level = tabId.split('-')[1];
+            loadExercise(subject, level, 0); // Load first available exercise
         }
 
-        function loadExercise(subject, level, exerciseId) {
-            const exercise = exercises[subject][level][exerciseId - 1];
+        function loadExercise(subject, level, exerciseIndex) {
             const container = document.querySelector(`#${subject}-page #${subject}-${level}-exercises`);
-            container.querySelector('.exercise-counter').textContent = exerciseId;
+            const completedExercises = userProgress[subject][level];
+            
+            // Encontrar el próximo ejercicio no completado
+            let availableExercises = [];
+            for (let i = 0; i < exercises[subject][level].length; i++) {
+                if (!completedExercises.includes(i)) {
+                    availableExercises.push(i);
+                }
+            }
+            
+            // Si no hay ejercicios disponibles, mostrar mensaje de completado
+            if (availableExercises.length === 0) {
+                container.querySelector('.exercise-question').innerHTML = "<h3>¡Felicidades!</h3><p>Has completado todos los ejercicios de esta sección.</p>";
+                container.querySelector('.options-container').innerHTML = "";
+                container.querySelector('.check-answer-btn').style.display = 'none';
+                container.querySelector('.next-question-btn').style.display = 'none';
+                container.querySelector('.prev-question-btn').style.display = 'none';
+                container.querySelector('.completed-message').style.display = 'block';
+                container.querySelector('.exercise-counter').textContent = "50/50";
+                container.querySelector('.progress-bar-inner').style.width = "100%";
+                return;
+            }
+            
+            // Asegurarse de que el índice esté dentro del rango disponible
+            exerciseIndex = exerciseIndex % availableExercises.length;
+            if (exerciseIndex < 0) exerciseIndex = availableExercises.length - 1;
+            
+            const exerciseId = availableExercises[exerciseIndex];
+            const exercise = exercises[subject][level][exerciseId];
+            
+            // Actualizar contador y barra de progreso
+            const progressPercentage = (completedExercises.length / exercises[subject][level].length) * 100;
+            container.querySelector('.exercise-counter').textContent = `${completedExercises.length + 1}/${exercises[subject][level].length}`;
+            container.querySelector('.progress-bar-inner').style.width = `${progressPercentage}%`;
+            
             container.querySelector('.exercise-question').innerHTML = exercise.question;
             container.querySelector('.feedback-correct').textContent = exercise.feedbackCorrect;
             container.querySelector('.feedback-incorrect').textContent = exercise.feedbackIncorrect;
             
             const optionsContainer = container.querySelector('.options-container');
             const inputAnswer = container.querySelector('.input-answer');
+            
             if (exercise.options) {
                 optionsContainer.style.display = 'grid';
                 if (inputAnswer) inputAnswer.style.display = 'none';
-                optionsContainer.innerHTML = exercise.options.map(opt => 
+                
+                // Mezclar las opciones para que no siempre estén en el mismo orden
+                const shuffledOptions = shuffleArray(exercise.options);
+                optionsContainer.innerHTML = shuffledOptions.map(opt => 
                     `<div class="option" data-correct="${opt.correct}">${opt.text}</div>`
                 ).join('');
             } else {
@@ -1526,14 +1725,25 @@
                 }
             }
             
+            // Mostrar/ocultar botones de navegación
+            const prevButton = container.querySelector('.prev-question-btn');
+            const nextButton = container.querySelector('.next-question-btn');
+            
+            prevButton.style.display = 'block';
+            nextButton.style.display = 'none'; // Se mostrará después de comprobar la respuesta
+            
             container.querySelector('.check-answer-btn').style.display = 'block';
-            container.querySelector('.next-question-btn').style.display = 'none';
             container.querySelectorAll('.exercise-feedback').forEach(fb => {
                 fb.style.display = 'none';
             });
             container.querySelectorAll('.option').forEach(opt => {
                 opt.classList.remove('selected', 'correct', 'incorrect');
             });
+            
+            // Guardar el índice actual para navegación
+            container.dataset.currentExerciseIndex = exerciseIndex;
+            container.dataset.currentExerciseId = exerciseId;
+            container.querySelector('.completed-message').style.display = 'none';
         }
 
         // Event listeners
@@ -1575,8 +1785,9 @@
                     const container = btn.closest('.exercise-container');
                     const subject = container.closest('.subject-page').id.split('-')[0];
                     const level = container.id.split('-')[1];
-                    const exerciseId = parseInt(container.querySelector('.exercise-counter').textContent);
-                    const exercise = exercises[subject][level][exerciseId - 1];
+                    const exerciseId = parseInt(container.dataset.currentExerciseId);
+                    
+                    const exercise = exercises[subject][level][exerciseId];
                     
                     let isCorrect = false;
                     if (exercise.options) {
@@ -1597,6 +1808,11 @@
                             opt.classList.add(opt.dataset.correct === 'true' ? 'correct' : 'incorrect');
                         });
                     }
+                    
+                    // Si la respuesta es correcta, marcar como completado
+                    if (isCorrect && !userProgress[subject][level].includes(exerciseId)) {
+                        userProgress[subject][level].push(exerciseId);
+                    }
                 });
             });
 
@@ -1616,9 +1832,36 @@
                     const container = btn.closest('.exercise-container');
                     const subject = container.closest('.subject-page').id.split('-')[0];
                     const level = container.id.split('-')[1];
-                    let exerciseId = parseInt(container.querySelector('.exercise-counter').textContent);
-                    exerciseId = exerciseId < 50 ? exerciseId + 1 : 1;
-                    loadExercise(subject, level, exerciseId);
+                    let exerciseIndex = parseInt(container.dataset.currentExerciseIndex);
+                    exerciseIndex = (exerciseIndex + 1) % exercises[subject][level].length;
+                    loadExercise(subject, level, exerciseIndex);
+                });
+            });
+
+            // Previous question buttons
+            document.querySelectorAll('.prev-question-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const container = btn.closest('.exercise-container');
+                    const subject = container.closest('.subject-page').id.split('-')[0];
+                    const level = container.id.split('-')[1];
+                    let exerciseIndex = parseInt(container.dataset.currentExerciseIndex);
+                    exerciseIndex = (exerciseIndex - 1 + exercises[subject][level].length) % exercises[subject][level].length;
+                    loadExercise(subject, level, exerciseIndex);
+                });
+            });
+
+            // Restart exercises buttons
+            document.querySelectorAll('.restart-exercises-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const container = btn.closest('.exercise-container');
+                    const subject = container.closest('.subject-page').id.split('-')[0];
+                    const level = container.id.split('-')[1];
+                    
+                    // Reiniciar el progreso
+                    userProgress[subject][level] = [];
+                    
+                    // Cargar el primer ejercicio
+                    loadExercise(subject, level, 0);
                 });
             });
         });
