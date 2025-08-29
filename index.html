@@ -441,143 +441,6 @@
             left: 0;
         }
         
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 400px;
-            padding: 2rem;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .close-modal {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #6c757d;
-            background: none;
-            border: none;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--dark-color);
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        .form-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-        
-        .user-menu {
-            position: relative;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        
-        .user-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            padding: 1rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-        
-        .user-dropdown.active {
-            display: block;
-            animation: fadeIn 0.3s;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .user-details {
-            margin-left: 0.5rem;
-        }
-        
-        .user-name {
-            font-weight: 600;
-            color: var(--dark-color);
-        }
-        
-        .user-email {
-            font-size: 0.8rem;
-            color: #6c757d;
-        }
-        
-        .user-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: #6c757d;
-        }
-        
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -689,40 +552,13 @@
             <div class="logo">Practica<span>Ejercicios</span></div>
             <nav>
                 <ul>
-                    <li><a href="https://ayoubelouardy.github.io/Practicaejercicios/" class="nav-link" data-page="home">Inicio</a></li>
+                    <li><a href="#" class="nav-link" data-page="home">Inicio</a></li>
                     <li><a href="#" class="nav-link" data-page="math">Matemáticas</a></li>
-                    <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Lengua-Castellana/">Lenguaje</a></li>
-                    <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias/" class="nav-link" data-page="science">Ciencias</a></li>
-                    <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias-Sociales/" class="nav-link" data-page="social">Sociales</a></li>
+                    <li><a href="#" class="nav-link" data-page="language">Lenguaje</a></li>
+                    <li><a href="#" class="nav-link" data-page="science">Ciencias</a></li>
+                    <li><a href="#" class="nav-link" data-page="social">Sociales</a></li>
                 </ul>
             </nav>
-            <div class="user-menu">
-                <div class="user-avatar" id="userAvatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="user-dropdown" id="userDropdown">
-                    <div class="user-info">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="user-details">
-                            <div class="user-name" id="userName">Invitado</div>
-                            <div class="user-email" id="userEmail">No has iniciado sesión</div>
-                        </div>
-                    </div>
-                    <div class="user-stats">
-                        <div class="stat">
-                            <div class="stat-value" id="completedExercises">0</div>
-                            <div class="stat-label">Completados</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value" id="correctAnswers">0%</div>
-                            <div class="stat-label">Precisión</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-math" id="loginBtn">Iniciar Sesión</button>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -827,7 +663,7 @@
         </section>
         <section class="subject-page" id="math-page">
             <div class="container">
-                <a href="https://ayoubelouardy.github.io/Practicaejercicios/" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+                <a href="#" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
                 <div class="section-title">
                     <h2>Matemáticas</h2>
                     <p>Selecciona un área de matemáticas para practicar</p>
@@ -1106,7 +942,7 @@
         </section>
         <section class="subject-page" id="language-page">
             <div class="container">
-                <a href="https://ayoubelouardy.github.io/Practicaejercicios/" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+                <a href="#" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
                 <div class="section-title">
                     <h2>Lenguaje</h2>
                     <p>Próximamente: Ejercicios de lenguaje</p>
@@ -1115,7 +951,7 @@
         </section>
         <section class="subject-page" id="science-page">
             <div class="container">
-                <a href="https://ayoubelouardy.github.io/Practicaejercicios/" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+                <a href="#" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
                 <div class="section-title">
                     <h2>Ciencias</h2>
                     <p>Próximamente: Ejercicios de ciencias</p>
@@ -1124,7 +960,7 @@
         </section>
         <section class="subject-page" id="social-page">
             <div class="container">
-                <a href="https://ayoubelouardy.github.io/Practicaejercicios/" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+                <a href="#" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
                 <div class="section-title">
                     <h2>Sociales</h2>
                     <p>Próximamente: Ejercicios de sociales</p>
@@ -1132,29 +968,6 @@
             </div>
         </section>
     </main>
-
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Iniciar Sesión</h2>
-                <button class="close-modal">&times;</button>
-            </div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" required placeholder="tu@email.com">
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" required placeholder="Tu contraseña">
-                </div>
-                <button type="submit" class="btn btn-math">Iniciar Sesión</button>
-                <div class="form-footer">
-                    <p>¿No tienes cuenta? <a href="#" id="registerLink">Regístrate aquí</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <footer>
         <div class="container">
@@ -1166,11 +979,11 @@
                 <div class="footer-column">
                     <h3>Enlaces rápidos</h3>
                     <ul>
-                        <li><a href="https://ayoubelouardy.github.io/Practicaejercicios/" class="nav-link" data-page="home">Inicio</a></li>
+                        <li><a href="#" class="nav-link" data-page="home">Inicio</a></li>
                         <li><a href="#" class="nav-link" data-page="math">Matemáticas</a></li>
-                        <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Lengua-Castellana/">Lenguaje</a></li>
-                        <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias/" class="nav-link" data-page="science">Ciencias</a></li>
-                        <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias-Sociales/" class="nav-link" data-page="social">Sociales</a></li>
+                        <li><a href="#" class="nav-link" data-page="language">Lenguaje</a></li>
+                        <li><a href="#" class="nav-link" data-page="science">Ciencias</a></li>
+                        <li><a href="#" class="nav-link" data-page="social">Sociales</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1198,16 +1011,6 @@
     </footer>
 
     <script>
-        // User data (simulated)
-        let userData = {
-            loggedIn: false,
-            name: "Invitado",
-            email: "",
-            completedExercises: 0,
-            correctAnswers: 0,
-            totalAnswers: 0
-        };
-
         // Exercise data (50+ per category and level)
         const exercises = {
             algebra: {
@@ -1215,8 +1018,6 @@
                     const a = Math.floor(Math.random() * 10) + 1;
                     const b = Math.floor(Math.random() * 10) + 1;
                     const c = Math.floor(Math.random() * 10) + 1;
-                    const d = Math.floor(Math.random() * 10) + 1;
-                    const e = Math.floor(Math.random() * 10) + 1;
                     
                     const types = [
                         {
@@ -1242,26 +1043,26 @@
                             feedbackIncorrect: `Incorrecto. La solución correcta es x = ${c/a - b}.`
                         },
                         {
-                            question: `Simplifica: <strong>${a}x + ${b} + ${c}x + ${d}</strong>`,
+                            question: `Simplifica: <strong>${a}x + ${b} + ${c}x + ${b}</strong>`,
                             options: [
-                                { text: `${a+c}x + ${b+d}`, correct: true },
-                                { text: `${a+c}x + ${b*d}`, correct: false },
-                                { text: `${a*c}x + ${b+d}`, correct: false },
+                                { text: `${a+c}x + ${b*2}`, correct: true },
+                                { text: `${a+c}x + ${b}`, correct: false },
+                                { text: `${a*c}x + ${b*2}`, correct: false },
                                 { text: `${a+c}x`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! La expresión simplificada es ${a+c}x + ${b+d}.`,
-                            feedbackIncorrect: `Incorrecto. La solución correcta es ${a+c}x + ${b+d}.`
+                            feedbackCorrect: `¡Correcto! La expresión simplificada es ${a+c}x + ${b*2}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es ${a+c}x + ${b*2}.`
                         },
                         {
-                            question: `Resuelve: <strong>${a}x - ${b} = ${c}x + ${d}</strong>`,
+                            question: `Resuelve: <strong>${a}x - ${b} = ${c}x + ${b}</strong>`,
                             options: [
-                                { text: `x = ${(d+b)/(a-c)}`, correct: true },
-                                { text: `x = ${(d-b)/(a-c)}`, correct: false },
-                                { text: `x = ${(d+b)/(a+c)}`, correct: false },
-                                { text: `x = ${(d-b)/(a+c)}`, correct: false }
+                                { text: `x = ${(b*2)/(a-c)}`, correct: true },
+                                { text: `x = ${(b)/(a-c)}`, correct: false },
+                                { text: `x = ${(b*2)/(a+c)}`, correct: false },
+                                { text: `x = ${(b)/(a+c)}`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! La solución es x = ${(d+b)/(a-c)}.`,
-                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${(d+b)/(a-c)}.`
+                            feedbackCorrect: `¡Correcto! La solución es x = ${(b*2)/(a-c)}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${(b*2)/(a-c)}.`
                         },
                         {
                             question: `Si x = ${a}, ¿cuál es el valor de ${b}x + ${c}?`,
@@ -1283,20 +1084,18 @@
                     const b = Math.floor(Math.random() * 10) + 1;
                     const c = Math.floor(Math.random() * 10) + 1;
                     const d = Math.floor(Math.random() * 10) + 1;
-                    const e = Math.floor(Math.random() * 10) + 1;
-                    const f = Math.floor(Math.random() * 10) + 1;
                     
                     const types = [
                         {
-                            question: `Resuelve el sistema: <strong>${a}x + ${b}y = ${c}, ${d}x + ${e}y = ${f}</strong>`,
+                            question: `Resuelve el sistema: <strong>${a}x + ${b}y = ${c}, ${d}x + ${a}y = ${b}</strong>`,
                             options: [
-                                { text: `x = ${(c*e - b*f)/(a*e - b*d)}, y = ${(a*f - c*d)/(a*e - b*d)}`, correct: true },
-                                { text: `x = ${(c*e + b*f)/(a*e - b*d)}, y = ${(a*f + c*d)/(a*e - b*d)}`, correct: false },
-                                { text: `x = ${(c*e - b*f)/(a*e + b*d)}, y = ${(a*f - c*d)/(a*e + b*d)}`, correct: false },
-                                { text: `x = ${(c*e + b*f)/(a*e + b*d)}, y = ${(a*f + c*d)/(a*e + b*d)}`, correct: false }
+                                { text: `x = ${(c*a - b*b)/(a*a - b*d)}, y = ${(a*b - c*d)/(a*a - b*d)}`, correct: true },
+                                { text: `x = ${(c*a + b*b)/(a*a - b*d)}, y = ${(a*b + c*d)/(a*a - b*d)}`, correct: false },
+                                { text: `x = ${(c*a - b*b)/(a*a + b*d)}, y = ${(a*b - c*d)/(a*a + b*d)}`, correct: false },
+                                { text: `x = ${(c*a + b*b)/(a*a + b*d)}, y = ${(a*b + c*d)/(a*a + b*d)}`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! La solución es x = ${(c*e - b*f)/(a*e - b*d)}, y = ${(a*f - c*d)/(a*e - b*d)}.`,
-                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${(c*e - b*f)/(a*e - b*d)}, y = ${(a*f - c*d)/(a*e - b*d)}.`
+                            feedbackCorrect: `¡Correcto! La solución es x = ${(c*a - b*b)/(a*a - b*d)}, y = ${(a*b - c*d)/(a*a - b*d)}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${(c*a - b*b)/(a*a - b*d)}, y = ${(a*b - c*d)/(a*a - b*d)}.`
                         },
                         {
                             question: `Factoriza: <strong>x² + ${b+a}x + ${a*b}</strong>`,
@@ -1350,8 +1149,6 @@
                     const a = Math.floor(Math.random() * 5) + 1;
                     const b = Math.floor(Math.random() * 5) + 1;
                     const c = Math.floor(Math.random() * 5) + 1;
-                    const d = Math.floor(Math.random() * 5) + 1;
-                    const e = Math.floor(Math.random() * 5) + 1;
                     
                     const types = [
                         {
@@ -1418,8 +1215,6 @@
                 basic: Array.from({ length: 50 }, (_, i) => {
                     const a = Math.floor(Math.random() * 10) + 1;
                     const b = Math.floor(Math.random() * 10) + 1;
-                    const c = Math.floor(Math.random() * 10) + 1;
-                    const d = Math.floor(Math.random() * 10) + 1;
                     
                     const types = [
                         {
@@ -1467,14 +1262,14 @@
                             feedbackIncorrect: `Incorrecto. El volumen del cubo se calcula como lado × lado × lado.`
                         },
                         {
-                            question: `Calcula el área de un trapecio con bases ${a} cm y ${b} cm, y altura ${c} cm.`,
+                            question: `Calcula el área de un trapecio con bases ${a} cm y ${b} cm, y altura ${a} cm.`,
                             options: [
-                                { text: `${((a+b)*c/2).toFixed(2)} cm²`, correct: true },
-                                { text: `${(a*b*c).toFixed(2)} cm²`, correct: false },
-                                { text: `${(a+b+c).toFixed(2)} cm²`, correct: false },
+                                { text: `${((a+b)*a/2).toFixed(2)} cm²`, correct: true },
+                                { text: `${(a*b*a).toFixed(2)} cm²`, correct: false },
+                                { text: `${(a+b+a).toFixed(2)} cm²`, correct: false },
                                 { text: `${(2*(a+b)).toFixed(2)} cm²`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! El área del trapecio es (base1 + base2) × altura / 2 = (${a} + ${b}) × ${c} / 2 = ${((a+b)*c/2).toFixed(2)} cm².`,
+                            feedbackCorrect: `¡Correcto! El área del trapecio es (base1 + base2) × altura / 2 = (${a} + ${b}) × ${a} / 2 = ${((a+b)*a/2).toFixed(2)} cm².`,
                             feedbackIncorrect: `Incorrecto. El área del trapecio se calcula como (base1 + base2) × altura / 2.`
                         }
                     ];
@@ -1484,7 +1279,6 @@
                 intermediate: Array.from({ length: 50 }, (_, i) => {
                     const a = Math.floor(Math.random() * 10) + 1;
                     const b = Math.floor(Math.random() * 10) + 1;
-                    const c = Math.floor(Math.random() * 10) + 1;
                     
                     const types = [
                         {
@@ -1499,7 +1293,7 @@
                             feedbackIncorrect: `Incorrecto. Usa el teorema de Pitágoras: h = √(cateto₁² + cateto₂²).`
                         },
                         {
-                            question: `Calcula el área de un rombo con diagonales ${a} cm y ${b} cm.`,
+                            question: `Calcula el área de un rombo con diagonales ${a} cm и ${b} cm.`,
                             options: [
                                 { text: `${(a*b/2).toFixed(2)} cm²`, correct: true },
                                 { text: `${a*b} cm²`, correct: false },
@@ -1532,14 +1326,14 @@
                             feedbackIncorrect: `Incorrecto. El área lateral del cono se calcula como π × radio × generatriz.`
                         },
                         {
-                            question: `Calcula el área de un polígono regular de ${a} lados, con apotema ${b} cm y lado ${c} cm.`,
+                            question: `Calcula el área de un polígono regular de ${a} lados, con apotema ${b} cm y lado ${a} cm.`,
                             options: [
-                                { text: `${(a*c*b/2).toFixed(2)} cm²`, correct: true },
-                                { text: `${(a*b*c).toFixed(2)} cm²`, correct: false },
+                                { text: `${(a*a*b/2).toFixed(2)} cm²`, correct: true },
+                                { text: `${(a*b*a).toFixed(2)} cm²`, correct: false },
                                 { text: `${(a*b).toFixed(2)} cm²`, correct: false },
-                                { text: `${(a*c).toFixed(2)} cm²`, correct: false }
+                                { text: `${(a*a).toFixed(2)} cm²`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! El área del polígono regular es (perímetro × apotema) / 2 = (${a} × ${c} × ${b}) / 2 = ${(a*c*b/2).toFixed(2)} cm².`,
+                            feedbackCorrect: `¡Correcto! El área del polígono regular es (perímetro × apotema) / 2 = (${a} × ${a} × ${b}) / 2 = ${(a*a*b/2).toFixed(2)} cm².`,
                             feedbackIncorrect: `Incorrecto. El área del polígono regular se calcula como (perímetro × apotema) / 2.`
                         }
                     ];
@@ -1549,7 +1343,6 @@
                 advanced: Array.from({ length: 50 }, (_, i) => {
                     const angle = Math.floor(Math.random() * 80) + 10;
                     const a = Math.floor(Math.random() * 10) + 1;
-                    const b = Math.floor(Math.random() * 10) + 1;
                     
                     const types = [
                         {
@@ -1586,14 +1379,14 @@
                             feedbackIncorrect: `Incorrecto. tan(${angle}°) = ${Math.tan(angle * Math.PI/180).toFixed(2)}.`
                         },
                         {
-                            question: `En un triángulo, el lado a mide ${a} cm, el lado b mide ${b} cm y el ángulo entre ellos es de ${angle}°. Calcula el área.`,
+                            question: `En un triángulo, el lado a mide ${a} cm, el lado b mide ${a} cm y el ángulo entre ellos es de ${angle}°. Calcula el área.`,
                             options: [
-                                { text: `${(0.5*a*b*Math.sin(angle * Math.PI/180)).toFixed(2)} cm²`, correct: true },
-                                { text: `${(a*b).toFixed(2)} cm²`, correct: false },
-                                { text: `${(0.5*a*b).toFixed(2)} cm²`, correct: false },
-                                { text: `${(a*b*Math.sin(angle * Math.PI/180)).toFixed(2)} cm²`, correct: false }
+                                { text: `${(0.5*a*a*Math.sin(angle * Math.PI/180)).toFixed(2)} cm²`, correct: true },
+                                { text: `${(a*a).toFixed(2)} cm²`, correct: false },
+                                { text: `${(0.5*a*a).toFixed(2)} cm²`, correct: false },
+                                { text: `${(a*a*Math.sin(angle * Math.PI/180)).toFixed(2)} cm²`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! El área es ½ × a × b × sin(θ) = 0.5 × ${a} × ${b} × sin(${angle}°) = ${(0.5*a*b*Math.sin(angle * Math.PI/180)).toFixed(2)} cm².`,
+                            feedbackCorrect: `¡Correcto! El área es ½ × a × b × sin(θ) = 0.5 × ${a} × ${a} × sin(${angle}°) = ${(0.5*a*a*Math.sin(angle * Math.PI/180)).toFixed(2)} cm².`,
                             feedbackIncorrect: `Incorrecto. El área se calcula como ½ × a × b × sin(θ).`
                         },
                         {
@@ -1617,7 +1410,6 @@
                     const a = Math.floor(Math.random() * 5) + 1;
                     const b = Math.floor(Math.random() * 5) + 1;
                     const c = Math.floor(Math.random() * 5) + 1;
-                    const n = Math.floor(Math.random() * 5) + 2;
                     
                     const types = [
                         {
@@ -1658,7 +1450,6 @@
                     const a = Math.floor(Math.random() * 5) + 1;
                     const b = Math.floor(Math.random() * 5) + 1;
                     const c = Math.floor(Math.random() * 5) + 1;
-                    const n = Math.floor(Math.random() * 5) + 2;
                     
                     const types = [
                         {
@@ -1896,7 +1687,6 @@
                     const a = Math.floor(Math.random() * 10) + 1;
                     const b = Math.floor(Math.random() * 10) + 1;
                     const c = Math.floor(Math.random() * 10) + 1;
-                    const d = Math.floor(Math.random() * 10) + 1;
                     
                     const types = [
                         {
@@ -1933,15 +1723,15 @@
                             feedbackIncorrect: `Incorrecto. A más trabajadores, menos tiempo. ${a} × ${b} = ${c} × x → x = ${a*b/c} horas.`
                         },
                         {
-                            question: `Calcula la media aritmética de ${a}, ${b}, ${c} y ${d}`,
+                            question: `Calcula la media aritmética de ${a}, ${b}, ${c} y ${a}`,
                             options: [
-                                { text: `${(a+b+c+d)/4}`, correct: true },
-                                { text: `${(a*b*c*d)/4}`, correct: false },
-                                { text: `${(a+b+c+d)}`, correct: false },
-                                { text: `${(a+b)/(c+d)}`, correct: false }
+                                { text: `${(a+b+c+a)/4}`, correct: true },
+                                { text: `${(a*b*c*a)/4}`, correct: false },
+                                { text: `${(a+b+c+a)}`, correct: false },
+                                { text: `${(a+b)/(c+a)}`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! Media = (${a} + ${b} + ${c} + ${d}) / 4 = ${a+b+c+d} / 4 = ${(a+b+c+d)/4}.`,
-                            feedbackIncorrect: `Incorrecto. Media = (${a} + ${b} + ${c} + ${d}) / 4 = ${a+b+c+d} / 4 = ${(a+b+c+d)/4}.`
+                            feedbackCorrect: `¡Correcto! Media = (${a} + ${b} + ${c} + ${a}) / 4 = ${a+b+c+a} / 4 = ${(a+b+c+a)/4}.`,
+                            feedbackIncorrect: `Incorrecto. Media = (${a} + ${b} + ${c} + ${a}) / 4 = ${a+b+c+a} / 4 = ${(a+b+c+a)/4}.`
                         },
                         {
                             question: `Si un coche recorre ${a} km con ${b} litros de gasolina, ¿cuántos litros necesitará para recorrer ${c} km?`,
@@ -1997,7 +1787,7 @@
         }
 
         function loadExercise(subject, level, exerciseId) {
-            const exercise = exercises[subject][level].find(ex => ex.id === exerciseId);
+            const exercise = exercises[subject][level][exerciseId - 1];
             const container = document.querySelector(`#${subject}-page #${subject}-${level}-exercises`);
             container.querySelector('.exercise-counter').textContent = exerciseId;
             container.querySelector('.exercise-question').innerHTML = exercise.question;
@@ -2040,11 +1830,7 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const page = link.dataset.page;
-                    if (['home', 'science', 'social'].includes(page)) {
-                        window.location.href = link.getAttribute('href');
-                    } else {
-                        showPage(page);
-                    }
+                    showPage(page);
                 });
             });
 
@@ -2074,7 +1860,7 @@
                     const subject = container.closest('.subject-page').id.split('-')[0];
                     const level = container.id.split('-')[1];
                     const exerciseId = parseInt(container.querySelector('.exercise-counter').textContent);
-                    const exercise = exercises[subject][level].find(ex => ex.id === exerciseId);
+                    const exercise = exercises[subject][level][exerciseId - 1];
                     
                     let isCorrect = false;
                     if (exercise.options) {
@@ -2095,11 +1881,6 @@
                             opt.classList.add(opt.dataset.correct === 'true' ? 'correct' : 'incorrect');
                         });
                     }
-                    
-                    userData.completedExercises++;
-                    userData.totalAnswers++;
-                    if (isCorrect) userData.correctAnswers++;
-                    updateUserStats();
                 });
             });
 
@@ -2124,40 +1905,7 @@
                     loadExercise(subject, level, exerciseId);
                 });
             });
-
-            // Login modal
-            const loginModal = document.getElementById('loginModal');
-            document.getElementById('loginBtn').addEventListener('click', (e) => {
-                e.preventDefault();
-                loginModal.style.display = 'flex';
-            });
-            document.querySelector('.close-modal').addEventListener('click', (e) => {
-                e.preventDefault();
-                loginModal.style.display = 'none';
-            });
-            document.getElementById('loginForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                userData.loggedIn = true;
-                userData.name = document.getElementById('email').value.split('@')[0];
-                userData.email = document.getElementById('email').value;
-                updateUserStats();
-                loginModal.style.display = 'none';
-            });
-
-            // User dropdown
-            document.getElementById('userAvatar').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('userDropdown').classList.toggle('active');
-            });
         });
-
-        function updateUserStats() {
-            document.getElementById('userName').textContent = userData.name;
-            document.getElementById('userEmail').textContent = userData.email || 'No has iniciado sesión';
-            document.getElementById('completedExercises').textContent = userData.completedExercises;
-            document.getElementById('correctAnswers').textContent = userData.totalAnswers ? 
-                Math.round((userData.correctAnswers / userData.totalAnswers) * 100) + '%' : '0%';
-        }
     </script>
 </body>
 </html>
