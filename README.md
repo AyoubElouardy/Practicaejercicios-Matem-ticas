@@ -1211,196 +1211,753 @@
         // Exercise data (50+ per category and level)
         const exercises = {
             algebra: {
-                basic: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Resuelve la ecuación: <strong>${i % 2 === 0 ? `3x - 7 = 8` : `2x + 5 = 13`}</strong>`,
-                    options: i % 2 === 0 ? [
-                        { text: "x = 4", correct: false },
-                        { text: "x = 6", correct: false },
-                        { text: "x = 5", correct: true },
-                        { text: "x = 3", correct: false }
-                    ] : [
-                        { text: "x = 3", correct: false },
-                        { text: "x = 5", correct: false },
-                        { text: "x = 4", correct: true },
-                        { text: "x = 6", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! Has resuelto bien la ecuación.`,
-                    feedbackIncorrect: `Incorrecto. La solución correcta es ${i % 2 === 0 ? 'x = 5' : 'x = 4'}.`
-                })),
-                intermediate: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Resuelve el sistema: <strong>${i % 2 === 0 ? `2x + y = 5, x - y = 1` : `3x + 2y = 8, x - y = 2`}</strong>`,
-                    options: i % 2 === 0 ? [
-                        { text: "x = 2, y = 1", correct: true },
-                        { text: "x = 1, y = 2", correct: false },
-                        { text: "x = 3, y = -1", correct: false },
-                        { text: "x = 0, y = 5", correct: false }
-                    ] : [
-                        { text: "x = 2, y = 1", correct: false },
-                        { text: "x = 3, y = 1", correct: true },
-                        { text: "x = 4, y = 2", correct: false },
-                        { text: "x = 1, y = 3", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! La solución es ${i % 2 === 0 ? 'x = 2, y = 1' : 'x = 3, y = 1'}.`,
-                    feedbackIncorrect: `Incorrecto. La solución correcta es ${i % 2 === 0 ? 'x = 2, y = 1' : 'x = 3, y = 1'}.`
-                })),
-                advanced: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Resuelve: <strong>${i % 2 === 0 ? `x² - 5x + 6 = 0` : `x² - 3x - 4 = 0`}</strong>`,
-                    options: i % 2 === 0 ? [
-                        { text: "x = 2, x = 3", correct: true },
-                        { text: "x = 1, x = 5", correct: false },
-                        { text: "x = -2, x = -3", correct: false },
-                        { text: "x = 0, x = 6", correct: false }
-                    ] : [
-                        { text: "x = -1, x = 4", correct: true },
-                        { text: "x = 1, x = 3", correct: false },
-                        { text: "x = -2, x = 2", correct: false },
-                        { text: "x = 0, x = 4", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! Las soluciones son ${i % 2 === 0 ? 'x = 2, x = 3' : 'x = -1, x = 4'}.`,
-                    feedbackIncorrect: `Incorrecto. Las soluciones correctas son ${i % 2 === 0 ? 'x = 2, x = 3' : 'x = -1, x = 4'}.`
-                }))
+                basic: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 10) + 1;
+                    const b = Math.floor(Math.random() * 10) + 1;
+                    const c = Math.floor(Math.random() * 10) + 1;
+                    const d = Math.floor(Math.random() * 10) + 1;
+                    const e = Math.floor(Math.random() * 10) + 1;
+                    
+                    const types = [
+                        {
+                            question: `Resuelve la ecuación: <strong>${a}x + ${b} = ${c}</strong>`,
+                            options: [
+                                { text: `x = ${(c-b)/a}`, correct: true },
+                                { text: `x = ${(c+b)/a}`, correct: false },
+                                { text: `x = ${(c-b)/(a+1)}`, correct: false },
+                                { text: `x = ${(c+b)/(a+1)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La solución es x = ${(c-b)/a}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${(c-b)/a}.`
+                        },
+                        {
+                            question: `Resuelve: <strong>${a}(x + ${b}) = ${c}</strong>`,
+                            options: [
+                                { text: `x = ${c/a - b}`, correct: true },
+                                { text: `x = ${c - b}`, correct: false },
+                                { text: `x = ${(c - a)/b}`, correct: false },
+                                { text: `x = ${c/a + b}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La solución es x = ${c/a - b}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${c/a - b}.`
+                        },
+                        {
+                            question: `Simplifica: <strong>${a}x + ${b} + ${c}x + ${d}</strong>`,
+                            options: [
+                                { text: `${a+c}x + ${b+d}`, correct: true },
+                                { text: `${a+c}x + ${b*d}`, correct: false },
+                                { text: `${a*c}x + ${b+d}`, correct: false },
+                                { text: `${a+c}x`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La expresión simplificada es ${a+c}x + ${b+d}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es ${a+c}x + ${b+d}.`
+                        },
+                        {
+                            question: `Resuelve: <strong>${a}x - ${b} = ${c}x + ${d}</strong>`,
+                            options: [
+                                { text: `x = ${(d+b)/(a-c)}`, correct: true },
+                                { text: `x = ${(d-b)/(a-c)}`, correct: false },
+                                { text: `x = ${(d+b)/(a+c)}`, correct: false },
+                                { text: `x = ${(d-b)/(a+c)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La solución es x = ${(d+b)/(a-c)}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${(d+b)/(a-c)}.`
+                        },
+                        {
+                            question: `Si x = ${a}, ¿cuál es el valor de ${b}x + ${c}?`,
+                            options: [
+                                { text: `${b*a + c}`, correct: true },
+                                { text: `${b*(a+1) + c}`, correct: false },
+                                { text: `${b*a + c + 1}`, correct: false },
+                                { text: `${b*(a-1) + c}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El valor es ${b*a + c}.`,
+                            feedbackIncorrect: `Incorrecto. El valor correcto es ${b*a + c}.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                }),
+                intermediate: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 10) + 1;
+                    const b = Math.floor(Math.random() * 10) + 1;
+                    const c = Math.floor(Math.random() * 10) + 1;
+                    const d = Math.floor(Math.random() * 10) + 1;
+                    const e = Math.floor(Math.random() * 10) + 1;
+                    const f = Math.floor(Math.random() * 10) + 1;
+                    
+                    const types = [
+                        {
+                            question: `Resuelve el sistema: <strong>${a}x + ${b}y = ${c}, ${d}x + ${e}y = ${f}</strong>`,
+                            options: [
+                                { text: `x = ${(c*e - b*f)/(a*e - b*d)}, y = ${(a*f - c*d)/(a*e - b*d)}`, correct: true },
+                                { text: `x = ${(c*e + b*f)/(a*e - b*d)}, y = ${(a*f + c*d)/(a*e - b*d)}`, correct: false },
+                                { text: `x = ${(c*e - b*f)/(a*e + b*d)}, y = ${(a*f - c*d)/(a*e + b*d)}`, correct: false },
+                                { text: `x = ${(c*e + b*f)/(a*e + b*d)}, y = ${(a*f + c*d)/(a*e + b*d)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La solución es x = ${(c*e - b*f)/(a*e - b*d)}, y = ${(a*f - c*d)/(a*e - b*d)}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${(c*e - b*f)/(a*e - b*d)}, y = ${(a*f - c*d)/(a*e - b*d)}.`
+                        },
+                        {
+                            question: `Factoriza: <strong>x² + ${b+a}x + ${a*b}</strong>`,
+                            options: [
+                                { text: `(x + ${a})(x + ${b})`, correct: true },
+                                { text: `(x + ${a+1})(x + ${b-1})`, correct: false },
+                                { text: `(x + ${a})(x - ${b})`, correct: false },
+                                { text: `(x - ${a})(x - ${b})`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La factorización es (x + ${a})(x + ${b}).`,
+                            feedbackIncorrect: `Incorrecto. La factorización correcta es (x + ${a})(x + ${b}).`
+                        },
+                        {
+                            question: `Resuelve: <strong>${a}x² + ${b}x + ${c} = 0</strong>`,
+                            options: [
+                                { text: `x = ${(-b + Math.sqrt(b*b - 4*a*c))/(2*a)}, x = ${(-b - Math.sqrt(b*b - 4*a*c))/(2*a)}`, correct: true },
+                                { text: `x = ${(b + Math.sqrt(b*b - 4*a*c))/(2*a)}, x = ${(b - Math.sqrt(b*b - 4*a*c))/(2*a)}`, correct: false },
+                                { text: `x = ${(-b + Math.sqrt(b*b + 4*a*c))/(2*a)}, x = ${(-b - Math.sqrt(b*b + 4*a*c))/(2*a)}`, correct: false },
+                                { text: `x = ${(b + Math.sqrt(b*b + 4*a*c))/(2*a)}, x = ${(b - Math.sqrt(b*b + 4*a*c))/(2*a)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! Las soluciones son x = ${(-b + Math.sqrt(b*b - 4*a*c))/(2*a)} y x = ${(-b - Math.sqrt(b*b - 4*a*c))/(2*a)}.`,
+                            feedbackIncorrect: `Incorrecto. Las soluciones correctas son x = ${(-b + Math.sqrt(b*b - 4*a*c))/(2*a)} y x = ${(-b - Math.sqrt(b*b - 4*a*c))/(2*a)}.`
+                        },
+                        {
+                            question: `Simplifica: <strong>(${a}x² + ${b}x) / (${c}x)</strong>`,
+                            options: [
+                                { text: `${a/c}x + ${b/c}`, correct: true },
+                                { text: `${a}x + ${b}`, correct: false },
+                                { text: `${a/c}x² + ${b/c}`, correct: false },
+                                { text: `${a/c}x + ${b}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La expresión simplificada es ${a/c}x + ${b/c}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es ${a/c}x + ${b/c}.`
+                        },
+                        {
+                            question: `Resuelve la inecuación: <strong>${a}x + ${b} > ${c}</strong>`,
+                            options: [
+                                { text: `x > ${(c-b)/a}`, correct: true },
+                                { text: `x < ${(c-b)/a}`, correct: false },
+                                { text: `x > ${(c+b)/a}`, correct: false },
+                                { text: `x < ${(c+b)/a}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La solución es x > ${(c-b)/a}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x > ${(c-b)/a}.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                }),
+                advanced: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 5) + 1;
+                    const b = Math.floor(Math.random() * 5) + 1;
+                    const c = Math.floor(Math.random() * 5) + 1;
+                    const d = Math.floor(Math.random() * 5) + 1;
+                    const e = Math.floor(Math.random() * 5) + 1;
+                    
+                    const types = [
+                        {
+                            question: `Resuelve: <strong>log<sub>${a}</sub>(${b}) + log<sub>${a}</sub>(${c})</strong>`,
+                            options: [
+                                { text: `log<sub>${a}</sub>(${b*c})`, correct: true },
+                                { text: `log<sub>${a}</sub>(${b+c})`, correct: false },
+                                { text: `log<sub>${a}</sub>(${b}) * log<sub>${a}</sub>(${c})`, correct: false },
+                                { text: `log<sub>${a*b}</sub>(${c})`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La solución es log<sub>${a}</sub>(${b*c}).`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es log<sub>${a}</sub>(${b*c}).`
+                        },
+                        {
+                            question: `Resuelve: <strong>${a}<sup>x</sup> = ${b}</strong>`,
+                            options: [
+                                { text: `x = log<sub>${a}</sub>(${b})`, correct: true },
+                                { text: `x = ${b}/${a}`, correct: false },
+                                { text: `x = ${a}/${b}`, correct: false },
+                                { text: `x = ln(${b})`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La solución es x = log<sub>${a}</sub>(${b}).`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x = log<sub>${a}</sub>(${b}).`
+                        },
+                        {
+                            question: `Simplifica: <strong>(${a}x<sup>${b}</sup>)<sup>${c}</sup></strong>`,
+                            options: [
+                                { text: `${Math.pow(a, c)}x<sup>${b*c}</sup>`, correct: true },
+                                { text: `${a}x<sup>${b+c}</sup>`, correct: false },
+                                { text: `${a*c}x<sup>${b}</sup>`, correct: false },
+                                { text: `${a}x<sup>${b*c}</sup>`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La expresión simplificada es ${Math.pow(a, c)}x<sup>${b*c}</sup>.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es ${Math.pow(a, c)}x<sup>${b*c}</sup>.`
+                        },
+                        {
+                            question: `Resuelve: <strong>√(${a}x) = ${b}</strong>`,
+                            options: [
+                                { text: `x = ${b*b/a}`, correct: true },
+                                { text: `x = ${b/a}`, correct: false },
+                                { text: `x = ${b*b}`, correct: false },
+                                { text: `x = ${a/(b*b)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La solución es x = ${b*b/a}.`,
+                            feedbackIncorrect: `Incorrecto. La solución correcta es x = ${b*b/a}.`
+                        },
+                        {
+                            question: `Factoriza: <strong>${a}x³ - ${b}x²</strong>`,
+                            options: [
+                                { text: `x²(${a}x - ${b})`, correct: true },
+                                { text: `x(${a}x² - ${b}x)`, correct: false },
+                                { text: `${a}x²(x - ${b})`, correct: false },
+                                { text: `x(${a}x - ${b})²`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La factorización es x²(${a}x - ${b}).`,
+                            feedbackIncorrect: `Incorrecto. La factorización correcta es x²(${a}x - ${b}).`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                })
             },
             geometry: {
-                basic: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula el área de un ${i % 2 === 0 ? `triángulo con base de 6 cm y altura de 4 cm` : `círculo con radio de 5 cm (usa π = 3.14)`}`,
-                    options: i % 2 === 0 ? [
-                        { text: "10 cm²", correct: false },
-                        { text: "24 cm²", correct: false },
-                        { text: "12 cm²", correct: true },
-                        { text: "20 cm²", correct: false }
-                    ] : [
-                        { text: "31.4 cm²", correct: false },
-                        { text: "78.5 cm²", correct: true },
-                        { text: "15.7 cm²", correct: false },
-                        { text: "62.8 cm²", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! El área es ${i % 2 === 0 ? '12 cm²' : '78.5 cm²'}.`,
-                    feedbackIncorrect: `Incorrecto. ${i % 2 === 0 ? 'El área del triángulo es base × altura / 2' : 'El área del círculo es πr²'}.`
-                })),
-                intermediate: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `En un triángulo rectángulo, los catetos miden ${i % 2 === 0 ? `3 cm y 4 cm` : `5 cm y 12 cm`}. Calcula la hipotenusa.`,
-                    options: i % 2 === 0 ? [
-                        { text: "5 cm", correct: true },
-                        { text: "7 cm", correct: false },
-                        { text: "6 cm", correct: false },
-                        { text: "8 cm", correct: false }
-                    ] : [
-                        { text: "13 cm", correct: true },
-                        { text: "15 cm", correct: false },
-                        { text: "10 cm", correct: false },
-                        { text: "17 cm", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! La hipotenusa es ${i % 2 === 0 ? '5 cm' : '13 cm'}.`,
-                    feedbackIncorrect: `Incorrecto. Usa el teorema de Pitágoras: a² + b² = c².`
-                })),
-                advanced: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula el ${i % 2 === 0 ? `seno de 30°` : `coseno de 60°`}.`,
-                    options: i % 2 === 0 ? [
-                        { text: "1/2", correct: true },
-                        { text: "√3/2", correct: false },
-                        { text: "1", correct: false },
-                        { text: "0", correct: false }
-                    ] : [
-                        { text: "1/2", correct: true },
-                        { text: "√3/2", correct: false },
-                        { text: "1", correct: false },
-                        { text: "0", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! El valor es 1/2.`,
-                    feedbackIncorrect: `Incorrecto. El valor correcto es 1/2.`
-                }))
+                basic: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 10) + 1;
+                    const b = Math.floor(Math.random() * 10) + 1;
+                    const c = Math.floor(Math.random() * 10) + 1;
+                    const d = Math.floor(Math.random() * 10) + 1;
+                    
+                    const types = [
+                        {
+                            question: `Calcula el área de un triángulo con base ${a} cm y altura ${b} cm.`,
+                            options: [
+                                { text: `${(a*b)/2} cm²`, correct: true },
+                                { text: `${a*b} cm²`, correct: false },
+                                { text: `${a+b} cm²`, correct: false },
+                                { text: `${2*(a+b)} cm²`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El área del triángulo es base × altura / 2 = ${a} × ${b} / 2 = ${(a*b)/2} cm².`,
+                            feedbackIncorrect: `Incorrecto. El área del triángulo se calcula como base × altura / 2.`
+                        },
+                        {
+                            question: `Calcula el perímetro de un rectángulo con lados ${a} cm y ${b} cm.`,
+                            options: [
+                                { text: `${2*(a+b)} cm`, correct: true },
+                                { text: `${a*b} cm`, correct: false },
+                                { text: `${a+b} cm`, correct: false },
+                                { text: `${2*a*b} cm`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El perímetro del rectángulo es 2 × (lado1 + lado2) = 2 × (${a} + ${b}) = ${2*(a+b)} cm.`,
+                            feedbackIncorrect: `Incorrecto. El perímetro del rectángulo se calcula como 2 × (lado1 + lado2).`
+                        },
+                        {
+                            question: `Calcula el área de un círculo con radio ${a} cm (usa π = 3.14).`,
+                            options: [
+                                { text: `${(3.14*a*a).toFixed(2)} cm²`, correct: true },
+                                { text: `${(2*3.14*a).toFixed(2)} cm²`, correct: false },
+                                { text: `${(3.14*2*a).toFixed(2)} cm²`, correct: false },
+                                { text: `${(a*a).toFixed(2)} cm²`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El área del círculo es π × radio² = 3.14 × ${a}² = ${(3.14*a*a).toFixed(2)} cm².`,
+                            feedbackIncorrect: `Incorrecto. El área del círculo se calcula como π × radio².`
+                        },
+                        {
+                            question: `Calcula el volumen de un cubo con lado ${a} cm.`,
+                            options: [
+                                { text: `${a*a*a} cm³`, correct: true },
+                                { text: `${6*a*a} cm³`, correct: false },
+                                { text: `${a*a} cm³`, correct: false },
+                                { text: `${3*a} cm³`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El volumen del cubo es lado³ = ${a}³ = ${a*a*a} cm³.`,
+                            feedbackIncorrect: `Incorrecto. El volumen del cubo se calcula como lado × lado × lado.`
+                        },
+                        {
+                            question: `Calcula el área de un trapecio con bases ${a} cm y ${b} cm, y altura ${c} cm.`,
+                            options: [
+                                { text: `${((a+b)*c/2).toFixed(2)} cm²`, correct: true },
+                                { text: `${(a*b*c).toFixed(2)} cm²`, correct: false },
+                                { text: `${(a+b+c).toFixed(2)} cm²`, correct: false },
+                                { text: `${(2*(a+b)).toFixed(2)} cm²`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El área del trapecio es (base1 + base2) × altura / 2 = (${a} + ${b}) × ${c} / 2 = ${((a+b)*c/2).toFixed(2)} cm².`,
+                            feedbackIncorrect: `Incorrecto. El área del trapecio se calcula como (base1 + base2) × altura / 2.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                }),
+                intermediate: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 10) + 1;
+                    const b = Math.floor(Math.random() * 10) + 1;
+                    const c = Math.floor(Math.random() * 10) + 1;
+                    
+                    const types = [
+                        {
+                            question: `En un triángulo rectángulo, los catetos miden ${a} cm y ${b} cm. ¿Cuánto mide la hipotenusa?`,
+                            options: [
+                                { text: `${Math.sqrt(a*a + b*b).toFixed(2)} cm`, correct: true },
+                                { text: `${a+b} cm`, correct: false },
+                                { text: `${Math.abs(a-b)} cm`, correct: false },
+                                { text: `${(a*b)/2} cm`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La hipotenusa es √(cateto₁² + cateto₂²) = √(${a}² + ${b}²) = √(${a*a + b*b}) = ${Math.sqrt(a*a + b*b).toFixed(2)} cm.`,
+                            feedbackIncorrect: `Incorrecto. Usa el teorema de Pitágoras: h = √(cateto₁² + cateto₂²).`
+                        },
+                        {
+                            question: `Calcula el área de un rombo con diagonales ${a} cm y ${b} cm.`,
+                            options: [
+                                { text: `${(a*b/2).toFixed(2)} cm²`, correct: true },
+                                { text: `${a*b} cm²`, correct: false },
+                                { text: `${2*(a+b)} cm²`, correct: false },
+                                { text: `${(a+b)/2} cm²`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El área del rombo es (diagonal₁ × diagonal₂) / 2 = (${a} × ${b}) / 2 = ${(a*b/2).toFixed(2)} cm².`,
+                            feedbackIncorrect: `Incorrecto. El área del rombo se calcula como (diagonal₁ × diagonal₂) / 2.`
+                        },
+                        {
+                            question: `Calcula el volumen de un cilindro con radio ${a} cm y altura ${b} cm (usa π = 3.14).`,
+                            options: [
+                                { text: `${(3.14*a*a*b).toFixed(2)} cm³`, correct: true },
+                                { text: `${(2*3.14*a*b).toFixed(2)} cm³`, correct: false },
+                                { text: `${(3.14*a*b).toFixed(2)} cm³`, correct: false },
+                                { text: `${(a*a*b).toFixed(2)} cm³`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El volumen del cilindro es π × radio² × altura = 3.14 × ${a}² × ${b} = ${(3.14*a*a*b).toFixed(2)} cm³.`,
+                            feedbackIncorrect: `Incorrecto. El volumen del cilindro se calcula como π × radio² × altura.`
+                        },
+                        {
+                            question: `Calcula el área lateral de un cono con radio ${a} cm y generatriz ${b} cm (usa π = 3.14).`,
+                            options: [
+                                { text: `${(3.14*a*b).toFixed(2)} cm²`, correct: true },
+                                { text: `${(3.14*a*a).toFixed(2)} cm²`, correct: false },
+                                { text: `${(3.14*a*b/2).toFixed(2)} cm²`, correct: false },
+                                { text: `${(2*3.14*a*b).toFixed(2)} cm²`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El área lateral del cono es π × radio × generatriz = 3.14 × ${a} × ${b} = ${(3.14*a*b).toFixed(2)} cm².`,
+                            feedbackIncorrect: `Incorrecto. El área lateral del cono se calcula como π × radio × generatriz.`
+                        },
+                        {
+                            question: `Calcula el área de un polígono regular de ${a} lados, con apotema ${b} cm y lado ${c} cm.`,
+                            options: [
+                                { text: `${(a*c*b/2).toFixed(2)} cm²`, correct: true },
+                                { text: `${(a*b*c).toFixed(2)} cm²`, correct: false },
+                                { text: `${(a*b).toFixed(2)} cm²`, correct: false },
+                                { text: `${(a*c).toFixed(2)} cm²`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El área del polígono regular es (perímetro × apotema) / 2 = (${a} × ${c} × ${b}) / 2 = ${(a*c*b/2).toFixed(2)} cm².`,
+                            feedbackIncorrect: `Incorrecto. El área del polígono regular se calcula como (perímetro × apotema) / 2.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                }),
+                advanced: Array.from({ length: 50 }, (_, i) => {
+                    const angle = Math.floor(Math.random() * 80) + 10;
+                    const a = Math.floor(Math.random() * 10) + 1;
+                    const b = Math.floor(Math.random() * 10) + 1;
+                    
+                    const types = [
+                        {
+                            question: `Calcula el seno de ${angle}° (redondea a 2 decimales).`,
+                            options: [
+                                { text: `${Math.sin(angle * Math.PI/180).toFixed(2)}`, correct: true },
+                                { text: `${Math.cos(angle * Math.PI/180).toFixed(2)}`, correct: false },
+                                { text: `${Math.tan(angle * Math.PI/180).toFixed(2)}`, correct: false },
+                                { text: `${(1/Math.sin(angle * Math.PI/180)).toFixed(2)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! sin(${angle}°) = ${Math.sin(angle * Math.PI/180).toFixed(2)}.`,
+                            feedbackIncorrect: `Incorrecto. sin(${angle}°) = ${Math.sin(angle * Math.PI/180).toFixed(2)}.`
+                        },
+                        {
+                            question: `Calcula el coseno de ${angle}° (redondea a 2 decimales).`,
+                            options: [
+                                { text: `${Math.cos(angle * Math.PI/180).toFixed(2)}`, correct: true },
+                                { text: `${Math.sin(angle * Math.PI/180).toFixed(2)}`, correct: false },
+                                { text: `${Math.tan(angle * Math.PI/180).toFixed(2)}`, correct: false },
+                                { text: `${(1/Math.cos(angle * Math.PI/180)).toFixed(2)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! cos(${angle}°) = ${Math.cos(angle * Math.PI/180).toFixed(2)}.`,
+                            feedbackIncorrect: `Incorrecto. cos(${angle}°) = ${Math.cos(angle * Math.PI/180).toFixed(2)}.`
+                        },
+                        {
+                            question: `Calcula la tangente de ${angle}° (redondea a 2 decimales).`,
+                            options: [
+                                { text: `${Math.tan(angle * Math.PI/180).toFixed(2)}`, correct: true },
+                                { text: `${Math.sin(angle * Math.PI/180).toFixed(2)}`, correct: false },
+                                { text: `${Math.cos(angle * Math.PI/180).toFixed(2)}`, correct: false },
+                                { text: `${(1/Math.tan(angle * Math.PI/180)).toFixed(2)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! tan(${angle}°) = ${Math.tan(angle * Math.PI/180).toFixed(2)}.`,
+                            feedbackIncorrect: `Incorrecto. tan(${angle}°) = ${Math.tan(angle * Math.PI/180).toFixed(2)}.`
+                        },
+                        {
+                            question: `En un triángulo, el lado a mide ${a} cm, el lado b mide ${b} cm y el ángulo entre ellos es de ${angle}°. Calcula el área.`,
+                            options: [
+                                { text: `${(0.5*a*b*Math.sin(angle * Math.PI/180)).toFixed(2)} cm²`, correct: true },
+                                { text: `${(a*b).toFixed(2)} cm²`, correct: false },
+                                { text: `${(0.5*a*b).toFixed(2)} cm²`, correct: false },
+                                { text: `${(a*b*Math.sin(angle * Math.PI/180)).toFixed(2)} cm²`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El área es ½ × a × b × sin(θ) = 0.5 × ${a} × ${b} × sin(${angle}°) = ${(0.5*a*b*Math.sin(angle * Math.PI/180)).toFixed(2)} cm².`,
+                            feedbackIncorrect: `Incorrecto. El área se calcula como ½ × a × b × sin(θ).`
+                        },
+                        {
+                            question: `Calcula la longitud de un arco de círculo con radio ${a} cm y ángulo central de ${angle}° (usa π = 3.14).`,
+                            options: [
+                                { text: `${(2*3.14*a*angle/360).toFixed(2)} cm`, correct: true },
+                                { text: `${(3.14*a*a*angle/360).toFixed(2)} cm`, correct: false },
+                                { text: `${(2*3.14*a).toFixed(2)} cm`, correct: false },
+                                { text: `${(3.14*a*angle/360).toFixed(2)} cm`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La longitud del arco es 2πr × (θ/360) = 2 × 3.14 × ${a} × (${angle}/360) = ${(2*3.14*a*angle/360).toFixed(2)} cm.`,
+                            feedbackIncorrect: `Incorrecto. La longitud del arco se calcula como 2πr × (θ/360).`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                })
             },
             calculus: {
-                basic: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula la derivada de f(x) = ${i % 2 === 0 ? `3x² + 2x - 5` : `4x³ - 3x² + 2x - 1`}`,
-                    answer: i % 2 === 0 ? "6x + 2" : "12x² - 6x + 2",
-                    feedbackCorrect: `¡Correcto! La derivada es ${i % 2 === 0 ? '6x + 2' : '12x² - 6x + 2'}.`,
-                    feedbackIncorrect: `Incorrecto. La derivada correcta es ${i % 2 === 0 ? '6x + 2' : '12x² - 6x + 2'}.`
-                })),
-                intermediate: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula la integral de f(x) = ${i % 2 === 0 ? `4x³` : `3x²`}`,
-                    answer: i % 2 === 0 ? "x^4 + C" : "x^3 + C",
-                    feedbackCorrect: `¡Correcto! La integral es ${i % 2 === 0 ? 'x⁴ + C' : 'x³ + C'}.`,
-                    feedbackIncorrect: `Incorrecto. La integral correcta es ${i % 2 === 0 ? 'x⁴ + C' : 'x³ + C'}.`
-                })),
-                advanced: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Calcula el límite: lim(x→0) (${i % 2 === 0 ? `sin(x)/x` : `(1 - cos(x))/x²`})`,
-                    options: i % 2 === 0 ? [
-                        { text: "1", correct: true },
-                        { text: "0", correct: false },
-                        { text: "∞", correct: false },
-                        { text: "No existe", correct: false }
-                    ] : [
-                        { text: "1/2", correct: true },
-                        { text: "1", correct: false },
-                        { text: "0", correct: false },
-                        { text: "No existe", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! El límite es ${i % 2 === 0 ? '1' : '1/2'}.`,
-                    feedbackIncorrect: `Incorrecto. El límite correcto es ${i % 2 === 0 ? '1' : '1/2'}.`
-                }))
+                basic: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 5) + 1;
+                    const b = Math.floor(Math.random() * 5) + 1;
+                    const c = Math.floor(Math.random() * 5) + 1;
+                    const n = Math.floor(Math.random() * 5) + 2;
+                    
+                    const types = [
+                        {
+                            question: `Calcula la derivada de f(x) = ${a}x² + ${b}x + ${c}`,
+                            answer: `${2*a}x + ${b}`,
+                            feedbackCorrect: `¡Correcto! La derivada es ${2*a}x + ${b}.`,
+                            feedbackIncorrect: `Incorrecto. La derivada correcta es ${2*a}x + ${b}.`
+                        },
+                        {
+                            question: `Calcula la derivada de f(x) = ${a}x³ - ${b}x² + ${c}x`,
+                            answer: `${3*a}x² - ${2*b}x + ${c}`,
+                            feedbackCorrect: `¡Correcto! La derivada es ${3*a}x² - ${2*b}x + ${c}.`,
+                            feedbackIncorrect: `Incorrecto. La derivada correcta es ${3*a}x² - ${2*b}x + ${c}.`
+                        },
+                        {
+                            question: `Calcula la derivada de f(x) = ${a}sen(x)`,
+                            answer: `${a}cos(x)`,
+                            feedbackCorrect: `¡Correcto! La derivada es ${a}cos(x).`,
+                            feedbackIncorrect: `Incorrecto. La derivada correcta es ${a}cos(x).`
+                        },
+                        {
+                            question: `Calcula la derivada de f(x) = ${a}cos(x)`,
+                            answer: `-${a}sen(x)`,
+                            feedbackCorrect: `¡Correcto! La derivada es -${a}sen(x).`,
+                            feedbackIncorrect: `Incorrecto. La derivada correcta es -${a}sen(x).`
+                        },
+                        {
+                            question: `Calcula la derivada de f(x) = ${a}e^x`,
+                            answer: `${a}e^x`,
+                            feedbackCorrect: `¡Correcto! La derivada es ${a}e^x.`,
+                            feedbackIncorrect: `Incorrecto. La derivada correcta es ${a}e^x.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                }),
+                intermediate: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 5) + 1;
+                    const b = Math.floor(Math.random() * 5) + 1;
+                    const c = Math.floor(Math.random() * 5) + 1;
+                    const n = Math.floor(Math.random() * 5) + 2;
+                    
+                    const types = [
+                        {
+                            question: `Calcula la integral ∫(${a}x² + ${b}x + ${c}) dx`,
+                            answer: `${a/3}x³ + ${b/2}x² + ${c}x + C`,
+                            feedbackCorrect: `¡Correcto! La integral es ${a/3}x³ + ${b/2}x² + ${c}x + C.`,
+                            feedbackIncorrect: `Incorrecto. La integral correcta es ${a/3}x³ + ${b/2}x² + ${c}x + C.`
+                        },
+                        {
+                            question: `Calcula la integral ∫(${a}cos(x)) dx`,
+                            answer: `${a}sen(x) + C`,
+                            feedbackCorrect: `¡Correcto! La integral es ${a}sen(x) + C.`,
+                            feedbackIncorrect: `Incorrecto. La integral correcta es ${a}sen(x) + C.`
+                        },
+                        {
+                            question: `Calcula la integral ∫(${a}e^x) dx`,
+                            answer: `${a}e^x + C`,
+                            feedbackCorrect: `¡Correcto! La integral es ${a}e^x + C.`,
+                            feedbackIncorrect: `Incorrecto. La integral correcta es ${a}e^x + C.`
+                        },
+                        {
+                            question: `Calcula la integral ∫(${a}/x) dx`,
+                            answer: `${a}ln|x| + C`,
+                            feedbackCorrect: `¡Correcto! La integral es ${a}ln|x| + C.`,
+                            feedbackIncorrect: `Incorrecto. La integral correcta es ${a}ln|x| + C.`
+                        },
+                        {
+                            question: `Calcula la integral ∫(${a}sen(x)) dx`,
+                            answer: `-${a}cos(x) + C`,
+                            feedbackCorrect: `¡Correcto! La integral es -${a}cos(x) + C.`,
+                            feedbackIncorrect: `Incorrecto. La integral correcta es -${a}cos(x) + C.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                }),
+                advanced: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 5) + 1;
+                    const b = Math.floor(Math.random() * 5) + 1;
+                    
+                    const types = [
+                        {
+                            question: `Calcula el límite: lim<sub>x→0</sub> (sen(${a}x)/x)`,
+                            options: [
+                                { text: `${a}`, correct: true },
+                                { text: `0`, correct: false },
+                                { text: `1`, correct: false },
+                                { text: `No existe`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El límite es ${a}.`,
+                            feedbackIncorrect: `Incorrecto. El límite correcto es ${a}.`
+                        },
+                        {
+                            question: `Calcula el límite: lim<sub>x→∞</sub> (${a}x² + ${b}x) / (${b}x² + ${a}x)`,
+                            options: [
+                                { text: `${a/b}`, correct: true },
+                                { text: `0`, correct: false },
+                                { text: `∞`, correct: false },
+                                { text: `1`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El límite es ${a/b}.`,
+                            feedbackIncorrect: `Incorrecto. El límite correcto es ${a/b}.`
+                        },
+                        {
+                            question: `Calcula el límite: lim<sub>x→0</sub> (1 - cos(${a}x))/x²`,
+                            options: [
+                                { text: `${a*a/2}`, correct: true },
+                                { text: `0`, correct: false },
+                                { text: `∞`, correct: false },
+                                { text: `1`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El límite es ${a*a/2}.`,
+                            feedbackIncorrect: `Incorrecto. El límite correcto es ${a*a/2}.`
+                        },
+                        {
+                            question: `Calcula la derivada de f(x) = ln(${a}x)`,
+                            options: [
+                                { text: `1/x`, correct: true },
+                                { text: `${a}/x`, correct: false },
+                                { text: `1/(${a}x)`, correct: false },
+                                { text: `${a}ln(x)`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La derivada es 1/x.`,
+                            feedbackIncorrect: `Incorrecto. La derivada correcta es 1/x.`
+                        },
+                        {
+                            question: `Calcula la derivada de f(x) = ${a}^x`,
+                            options: [
+                                { text: `${a}^x ln(${a})`, correct: true },
+                                { text: `x${a}^{x-1}`, correct: false },
+                                { text: `${a}^x`, correct: false },
+                                { text: `${a}^{x-1}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! La derivada es ${a}^x ln(${a}).`,
+                            feedbackIncorrect: `Incorrecto. La derivada correcta es ${a}^x ln(${a}).`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                })
             },
             arithmetic: {
-                basic: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Simplifica la fracción: ${i % 2 === 0 ? `18/24` : `15/25`}`,
-                    options: i % 2 === 0 ? [
-                        { text: "6/8", correct: false },
-                        { text: "9/12", correct: false },
-                        { text: "3/4", correct: true },
-                        { text: "2/3", correct: false }
-                    ] : [
-                        { text: "5/8", correct: false },
-                        { text: "3/5", correct: true },
-                        { text: "6/10", correct: false },
-                        { text: "4/5", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! La fracción simplificada es ${i % 2 === 0 ? '3/4' : '3/5'}.`,
-                    feedbackIncorrect: `Incorrecto. El máximo común divisor da ${i % 2 === 0 ? '3/4' : '3/5'}.`
-                })),
-                intermediate: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `¿Cuánto es el ${i % 2 === 0 ? `20% de 150` : `15% de 200`}?`,
-                    options: i % 2 === 0 ? [
-                        { text: "30", correct: true },
-                        { text: "20", correct: false },
-                        { text: "15", correct: false },
-                        { text: "25", correct: false }
-                    ] : [
-                        { text: "30", correct: true },
-                        { text: "25", correct: false },
-                        { text: "20", correct: false },
-                        { text: "35", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! El resultado es ${i % 2 === 0 ? '30' : '30'}.`,
-                    feedbackIncorrect: `Incorrecto. Calcula: ${i % 2 === 0 ? '(20/100) × 150 = 30' : '(15/100) × 200 = 30'}.`
-                })),
-                advanced: Array.from({ length: 50 }, (_, i) => ({
-                    id: i + 1,
-                    question: `Si ${i % 2 === 0 ? `3 kg de manzanas cuestan $12` : `5 kg de naranjas cuestan $20`}, ¿cuánto cuestan ${i % 2 === 0 ? `5 kg` : `8 kg`}?`,
-                    options: i % 2 === 0 ? [
-                        { text: "$20", correct: true },
-                        { text: "$15", correct: false },
-                        { text: "$18", correct: false },
-                        { text: "$25", correct: false }
-                    ] : [
-                        { text: "$32", correct: true },
-                        { text: "$28", correct: false },
-                        { text: "$30", correct: false },
-                        { text: "$35", correct: false }
-                    ],
-                    feedbackCorrect: `¡Correcto! El costo es ${i % 2 === 0 ? '$20' : '$32'}.`,
-                    feedbackIncorrect: `Incorrecto. Usa la proporción: ${i % 2 === 0 ? '(12/3) × 5 = $20' : '(20/5) × 8 = $32'}.`
-                }))
+                basic: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 10) + 1;
+                    const b = Math.floor(Math.random() * 10) + 1;
+                    const c = Math.floor(Math.random() * 10) + 1;
+                    
+                    const types = [
+                        {
+                            question: `Simplifica la fracción ${a*b}/${a*c}`,
+                            options: [
+                                { text: `${b}/${c}`, correct: true },
+                                { text: `${a*b}/${a*c}`, correct: false },
+                                { text: `${b}/${a}`, correct: false },
+                                { text: `${a}/${c}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! ${a*b}/${a*c} = ${b}/${c}.`,
+                            feedbackIncorrect: `Incorrecto. ${a*b}/${a*c} = ${b}/${c}.`
+                        },
+                        {
+                            question: `Calcula: ${a} + ${b} × ${c}`,
+                            options: [
+                                { text: `${a + b*c}`, correct: true },
+                                { text: `${(a+b)*c}`, correct: false },
+                                { text: `${a*b + c}`, correct: false },
+                                { text: `${a*b*c}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! ${a} + ${b} × ${c} = ${a} + ${b*c} = ${a + b*c}.`,
+                            feedbackIncorrect: `Incorrecto. Recuerda que la multiplicación tiene prioridad: ${a} + ${b} × ${c} = ${a} + ${b*c} = ${a + b*c}.`
+                        },
+                        {
+                            question: `Calcula: (${a} + ${b}) × ${c}`,
+                            options: [
+                                { text: `${(a+b)*c}`, correct: true },
+                                { text: `${a + b*c}`, correct: false },
+                                { text: `${a*b + c}`, correct: false },
+                                { text: `${a*b*c}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! (${a} + ${b}) × ${c} = ${a+b} × ${c} = ${(a+b)*c}.`,
+                            feedbackIncorrect: `Incorrecto. (${a} + ${b}) × ${c} = ${a+b} × ${c} = ${(a+b)*c}.`
+                        },
+                        {
+                            question: `Calcula: ${a}² + ${b}²`,
+                            options: [
+                                { text: `${a*a + b*b}`, correct: true },
+                                { text: `${(a+b)*(a+b)}`, correct: false },
+                                { text: `${a*b*2}`, correct: false },
+                                { text: `${a+b}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! ${a}² + ${b}² = ${a*a} + ${b*b} = ${a*a + b*b}.`,
+                            feedbackIncorrect: `Incorrecto. ${a}² + ${b}² = ${a*a} + ${b*b} = ${a*a + b*b}.`
+                        },
+                        {
+                            question: `Calcula: ${a} × ${b} ÷ ${c}`,
+                            options: [
+                                { text: `${(a*b/c).toFixed(2)}`, correct: true },
+                                { text: `${(a/b*c).toFixed(2)}`, correct: false },
+                                { text: `${(a*b*c).toFixed(2)}`, correct: false },
+                                { text: `${(a/(b*c)).toFixed(2)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! ${a} × ${b} ÷ ${c} = ${a*b} ÷ ${c} = ${(a*b/c).toFixed(2)}.`,
+                            feedbackIncorrect: `Incorrecto. ${a} × ${b} ÷ ${c} = ${a*b} ÷ ${c} = ${(a*b/c).toFixed(2)}.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                }),
+                intermediate: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 20) + 10;
+                    const b = Math.floor(Math.random() * 10) + 5;
+                    const c = Math.floor(Math.random() * 100) + 50;
+                    const percentage = Math.floor(Math.random() * 30) + 10;
+                    
+                    const types = [
+                        {
+                            question: `Calcula el ${percentage}% de ${c}.`,
+                            options: [
+                                { text: `${(percentage/100 * c).toFixed(2)}`, correct: true },
+                                { text: `${(percentage * c).toFixed(2)}`, correct: false },
+                                { text: `${(c/percentage).toFixed(2)}`, correct: false },
+                                { text: `${(100/percentage * c).toFixed(2)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! El ${percentage}% de ${c} es ${percentage/100 * c}.`,
+                            feedbackIncorrect: `Incorrecto. El ${percentage}% de ${c} es ${percentage/100 * c}.`
+                        },
+                        {
+                            question: `¿Qué porcentaje es ${a} de ${b}?`,
+                            options: [
+                                { text: `${((a/b)*100).toFixed(2)}%`, correct: true },
+                                { text: `${((b/a)*100).toFixed(2)}%`, correct: false },
+                                { text: `${(a*100/b).toFixed(2)}%`, correct: false },
+                                { text: `${(b*100/a).toFixed(2)}%`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! ${a} es el ${((a/b)*100).toFixed(2)}% de ${b}.`,
+                            feedbackIncorrect: `Incorrecto. ${a} es el ${((a/b)*100).toFixed(2)}% de ${b}.`
+                        },
+                        {
+                            question: `Si un producto cuesta ${c}€ y tiene un ${percentage}% de descuento, ¿cuál es su precio final?`,
+                            options: [
+                                { text: `${(c * (1 - percentage/100)).toFixed(2)}€`, correct: true },
+                                { text: `${(c - percentage).toFixed(2)}€`, correct: false },
+                                { text: `${(c * percentage/100).toFixed(2)}€`, correct: false },
+                                { text: `${(c / (1 + percentage/100)).toFixed(2)}€`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! Precio final = ${c} × (1 - ${percentage}/100) = ${c * (1 - percentage/100)}€.`,
+                            feedbackIncorrect: `Incorrecto. Precio final = ${c} × (1 - ${percentage}/100) = ${c * (1 - percentage/100)}€.`
+                        },
+                        {
+                            question: `Si ${a} trabajadores completan un trabajo en ${b} días, ¿cuántos días tardarán ${a*2} trabajadores?`,
+                            options: [
+                                { text: `${(a*b/(a*2))} días`, correct: true },
+                                { text: `${b*2} días`, correct: false },
+                                { text: `${b} días`, correct: false },
+                                { text: `${a*b} días`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! A más trabajadores, menos días. ${a} × ${b} = ${a*2} × x → x = ${a*b/(a*2)} días.`,
+                            feedbackIncorrect: `Incorrecto. A más trabajadores, menos días. ${a} × ${b} = ${a*2} × x → x = ${a*b/(a*2)} días.`
+                        },
+                        {
+                            question: `Calcula el interés simple de ${c}€ al ${percentage}% anual durante ${a} años.`,
+                            options: [
+                                { text: `${(c * percentage/100 * a).toFixed(2)}€`, correct: true },
+                                { text: `${(c * Math.pow(1+percentage/100, a)).toFixed(2)}€`, correct: false },
+                                { text: `${(c * percentage/100).toFixed(2)}€`, correct: false },
+                                { text: `${(c * a).toFixed(2)}€`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! Interés = Capital × Tasa × Tiempo = ${c} × ${percentage/100} × ${a} = ${(c * percentage/100 * a).toFixed(2)}€.`,
+                            feedbackIncorrect: `Incorrecto. Interés simple = Capital × Tasa × Tiempo = ${c} × ${percentage/100} × ${a} = ${(c * percentage/100 * a).toFixed(2)}€.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                }),
+                advanced: Array.from({ length: 50 }, (_, i) => {
+                    const a = Math.floor(Math.random() * 10) + 1;
+                    const b = Math.floor(Math.random() * 10) + 1;
+                    const c = Math.floor(Math.random() * 10) + 1;
+                    const d = Math.floor(Math.random() * 10) + 1;
+                    
+                    const types = [
+                        {
+                            question: `Resuelve la proporción: ${a}/${b} = ${c}/x`,
+                            options: [
+                                { text: `x = ${(b*c)/a}`, correct: true },
+                                { text: `x = ${(a*c)/b}`, correct: false },
+                                { text: `x = ${(a*b)/c}`, correct: false },
+                                { text: `x = ${(a+b)/c}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! ${a}/${b} = ${c}/x → x = (${b} × ${c}) / ${a} = ${(b*c)/a}.`,
+                            feedbackIncorrect: `Incorrecto. ${a}/${b} = ${c}/x → x = (${b} × ${c}) / ${a} = ${(b*c)/a}.`
+                        },
+                        {
+                            question: `Si ${a} libros cuestan ${b}€, ¿cuánto costarán ${c} libros?`,
+                            options: [
+                                { text: `${(b*c/a).toFixed(2)}€`, correct: true },
+                                { text: `${(a*b/c).toFixed(2)}€`, correct: false },
+                                { text: `${(a*c/b).toFixed(2)}€`, correct: false },
+                                { text: `${(a+b+c).toFixed(2)}€`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! ${a} libros → ${b}€, 1 libro → ${b/a}€, ${c} libros → ${c} × ${b/a} = ${(b*c/a).toFixed(2)}€.`,
+                            feedbackIncorrect: `Incorrecto. ${a} libros → ${b}€, 1 libro → ${b/a}€, ${c} libros → ${c} × ${b/a} = ${(b*c/a).toFixed(2)}€.`
+                        },
+                        {
+                            question: `Si ${a} trabajadores construyen un muro en ${b} horas, ¿cuánto tardarán ${c} trabajadores?`,
+                            options: [
+                                { text: `${(a*b/c).toFixed(2)} horas`, correct: true },
+                                { text: `${(b*c/a).toFixed(2)} horas`, correct: false },
+                                { text: `${(a*c/b).toFixed(2)} horas`, correct: false },
+                                { text: `${(a+b+c).toFixed(2)} horas`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! A más trabajadores, menos tiempo. ${a} × ${b} = ${c} × x → x = ${a*b/c} horas.`,
+                            feedbackIncorrect: `Incorrecto. A más trabajadores, menos tiempo. ${a} × ${b} = ${c} × x → x = ${a*b/c} horas.`
+                        },
+                        {
+                            question: `Calcula la media aritmética de ${a}, ${b}, ${c} y ${d}`,
+                            options: [
+                                { text: `${(a+b+c+d)/4}`, correct: true },
+                                { text: `${(a*b*c*d)/4}`, correct: false },
+                                { text: `${(a+b+c+d)}`, correct: false },
+                                { text: `${(a+b)/(c+d)}`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! Media = (${a} + ${b} + ${c} + ${d}) / 4 = ${a+b+c+d} / 4 = ${(a+b+c+d)/4}.`,
+                            feedbackIncorrect: `Incorrecto. Media = (${a} + ${b} + ${c} + ${d}) / 4 = ${a+b+c+d} / 4 = ${(a+b+c+d)/4}.`
+                        },
+                        {
+                            question: `Si un coche recorre ${a} km con ${b} litros de gasolina, ¿cuántos litros necesitará para recorrer ${c} km?`,
+                            options: [
+                                { text: `${(b*c/a).toFixed(2)} litros`, correct: true },
+                                { text: `${(a*b/c).toFixed(2)} litros`, correct: false },
+                                { text: `${(a*c/b).toFixed(2)} litros`, correct: false },
+                                { text: `${(a+b+c).toFixed(2)} litros`, correct: false }
+                            ],
+                            feedbackCorrect: `¡Correcto! ${a} km → ${b} litros, 1 km → ${b/a} litros, ${c} km → ${c} × ${b/a} = ${(b*c/a).toFixed(2)} litros.`,
+                            feedbackIncorrect: `Incorrecto. ${a} km → ${b} litros, 1 km → ${b/a} litros, ${c} km → ${c} × ${b/a} = ${(b*c/a).toFixed(2)} litros.`
+                        }
+                    ];
+                    
+                    return types[i % types.length];
+                })
             }
         };
 
@@ -1604,3 +2161,4 @@
     </script>
 </body>
 </html>
+       
