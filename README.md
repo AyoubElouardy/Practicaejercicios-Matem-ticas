@@ -543,9 +543,8 @@
             border-bottom: 1px solid #eee;
         }
         
-        .极user-details {
+        .user-details {
             margin-left: 0.5rem;
-           极
         }
         
         .user-name {
@@ -574,7 +573,7 @@
             color: var(--primary-color);
         }
         
-        .stat极-label {
+        .stat-label {
             font-size: 0.8rem;
             color: #6c757d;
         }
@@ -619,7 +618,7 @@
             text-align: center;
             padding-top: 1.5rem;
             border-top: 1px solid #495057;
-            color极: #adb5bd;
+            color: #adb5bd;
             font-size: 0.9rem;
         }
         
@@ -717,7 +716,7 @@
                 </ul>
             </nav>
             <div class="user-menu">
-                <div class极="user-avatar" id="userAvatar">
+                <div class="user-avatar" id="userAvatar">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="user-dropdown" id="userDropdown">
@@ -730,7 +729,7 @@
                             <div class="user-email" id="userEmail">No has iniciado sesión</div>
                         </div>
                     </div>
-                    <div class="user极-stats">
+                    <div class="user-stats">
                         <div class="stat">
                             <div class="stat-value" id="completedExercises">0</div>
                             <div class="stat-label">Completados</div>
@@ -760,7 +759,7 @@
                 <div class="container">
                     <div class="section-title">
                         <h2>Temas de Matemáticas</h2>
-                        <极p>Explora nuestros ejercicios por área de matemáticas</p>
+                        <p>Explora nuestros ejercicios por área de matemáticas</p>
                     </div>
                     <div class="topics-grid">
                         <div class="topic-card algebra">
@@ -806,12 +805,12 @@
                     </div>
                     <div class="difficulty-cards">
                         <div class="difficulty-card difficulty-basic">
-                            <div class="difficulty-icon"><i class="fas极 fa-star"></i></div>
+                            <div class="difficulty-icon"><i class="fas fa-star"></i></div>
                             <h3>Nivel Básico</h3>
                             <p>Ejercicios para principiantes y estudiantes de primaria</p>
                             <ul>
                                 <li>Operaciones básicas</li>
-                                <li>Problemas sencillos de álgebra</极li>
+                                <li>Problemas sencillos de álgebra</li>
                                 <li>Geometría elemental</li>
                                 <li>Fracciones y decimales</li>
                             </ul>
@@ -830,17 +829,17 @@
                             <a href="#" class="btn">Comenzar</a>
                         </div>
                         <div class="difficulty-card difficulty-advanced">
-                            <div class="difficulty-icon"><i class="fas fa-stars"></极i></div>
+                            <div class="difficulty-icon"><i class="fas fa-stars"></i></div>
                             <h3>Nivel Avanzado</h3>
                             <p>Ejercicios para bachillerato y universidad</p>
                             <ul>
-                                <极li>Cálculo diferencial e integral</li>
+                                <li>Cálculo diferencial e integral</li>
                                 <li>Álgebra lineal</li>
-                                <li>极Geometría avanzada</li>
+                                <li>Geometría avanzada</li>
                                 <li>Ecuaciones diferenciales</li>
                             </ul>
                             <a href="#" class="btn">Comenzar</a>
-                        </极div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -850,7 +849,7 @@
                 <a href="#" class="back-button nav-link" data-page="home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
                 <div class="section-title">
                     <h2>Matemáticas</h2>
-                    <p>Selecciona un área de matemáticas para practicar</极p>
+                    <p>Selecciona un área de matemáticas para practicar</p>
                 </div>
                 <div class="topics-grid">
                     <div class="topic-card algebra">
@@ -866,7 +865,7 @@
                         <div class="topic-content">
                             <h3>Geometría</h3>
                             <p>Ángulos, polígonos, trigonometría y teoremas.</p>
-                            <a href="#" class="极btn btn-geometry practice-btn" data-subject="geometry">Practicar</a>
+                            <a href="#" class="btn btn-geometry practice-btn" data-subject="geometry">Practicar</a>
                         </div>
                     </div>
                     <div class="topic-card calculus">
@@ -923,10 +922,10 @@
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
-                        </极div>
+                        </div>
                     </div>
                     <div class="exercise-question"></div>
-                    <div class="options-container"></极div>
+                    <div class="options-container"></div>
                     <button class="btn btn-algebra check-answer-btn">Comprobar respuesta</button>
                     <button class="btn btn-algebra next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
@@ -936,7 +935,7 @@
                 </div>
                 <div class="exercise-container" id="algebra-advanced-exercises">
                     <div class="exercise-header">
-                        <h3 class极="exercise-title">Álgebra Avanzada: Ecuaciones Cuadráticas</h3>
+                        <h3 class="exercise-title">Álgebra Avanzada: Ecuaciones Cuadráticas</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
@@ -965,7 +964,7 @@
                     <div class="exercise-tab" data-tab="geometry-intermediate">Intermedio</div>
                     <div class="exercise-tab" data-tab="geometry-advanced">Avanzado</div>
                 </div>
-                <div class="exercise-container active" id="geometry极-basic-exercises">
+                <div class="exercise-container active" id="geometry-basic-exercises">
                     <div class="exercise-header">
                         <h3 class="exercise-title">Geometría Básica: Área de Figuras</h3>
                         <div class="exercise-progress">
@@ -977,7 +976,7 @@
                     <div class="options-container"></div>
                     <button class="btn btn-geometry check-answer-btn">Comprobar respuesta</button>
                     <button class="btn btn-geometry next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
-                    <div class="exercise极-feedback feedback-correct"></div>
+                    <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
                     <div class="completion-message"></div>
                     <div class="more-exercises">¡Próximamente más ejercicios!</div>
@@ -986,14 +985,14 @@
                     <div class="exercise-header">
                         <h3 class="exercise-title">Geometría Intermedia: Teorema de Pitágoras</h3>
                         <div class="exercise-progress">
-                            <i class="fas fa-star" style="color: gold; margin-right: 5极x;"></i>
+                            <i class="fas fa-star" style="color: gold; margin-right: 5x;"></i>
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
-                    <极div class="exercise-question"></div>
+                    <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-geometry check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-geometry next-question-btn" style极="display: none; background-color: var(--success-color);">极Siguiente ejercicio</button>
+                    <button class="btn btn-geometry next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
                     <div class="completion-message"></div>
@@ -1009,7 +1008,7 @@
                     </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
-                    <button class="btn btn-geometry check-answer-btn">极Comprobar respuesta</button>
+                    <button class="btn btn-geometry check-answer-btn">Comprobar respuesta</button>
                     <button class="btn btn-geometry next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
@@ -1026,8 +1025,8 @@
                     <p>Practica con más de 50 ejercicios de cálculo de diferentes niveles</p>
                 </div>
                 <div class="exercise-tabs">
-                    <div class="极exercise-tab active" data-tab="calculus-basic">Básico</div>
-                    <div class="exercise-tab" data-tab="calculus-intermediate">Intermedio</极div>
+                    <div class="exercise-tab active" data-tab="calculus-basic">Básico</div>
+                    <div class="exercise-tab" data-tab="calculus-intermediate">Intermedio</div>
                     <div class="exercise-tab" data-tab="calculus-advanced">Avanzado</div>
                 </div>
                 <div class="exercise-container active" id="calculus-basic-exercises">
@@ -1055,10 +1054,10 @@
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
-                    <div class极="exercise-question"></div>
+                    <div class="exercise-question"></div>
                     <input type="text" class="input-answer" placeholder="Escribe tu respuesta aquí">
                     <button class="btn btn-calculus check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn极-calculus next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <button class="btn btn-calculus next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
                     <div class="completion-message"></div>
@@ -1066,7 +1065,7 @@
                 </div>
                 <div class="exercise-container" id="calculus-advanced-exercises">
                     <div class="exercise-header">
-                        <h3 class="exercise-title">极Cálculo Avanzado: Límites</h3>
+                        <h3 class="exercise-title">Cálculo Avanzado: Límites</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
@@ -1078,7 +1077,7 @@
                     <button class="btn btn-calculus next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
-                    <div class="completion极-message"></div>
+                    <div class="completion-message"></div>
                     <div class="more-exercises">¡Próximamente más ejercicios!</div>
                 </div>
             </div>
@@ -1091,16 +1090,16 @@
                     <p>Practica con más de 50 ejercicios de aritmética de diferentes niveles</p>
                 </div>
                 <div class="exercise-tabs">
-                    <div class="exercise极-tab active" data-tab="arithmetic-basic">Básico</div>
+                    <div class="exercise-tab active" data-tab="arithmetic-basic">Básico</div>
                     <div class="exercise-tab" data-tab="arithmetic-intermediate">Intermedio</div>
                     <div class="exercise-tab" data-tab="arithmetic-advanced">Avanzado</div>
                 </div>
                 <div class="exercise-container active" id="arithmetic-basic-exercises">
                     <div class="exercise-header">
-                        <h3 class="exercise-title">Aritmética Básica: Fracciones</极h3>
+                        <h3 class="exercise-title">Aritmética Básica: Fracciones</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
-                            <span>Ejercicio <span class="exercise-counter">极1</span> de 50</span>
+                            <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
                     <div class="exercise-question"></div>
@@ -1112,7 +1111,7 @@
                     <div class="completion-message"></div>
                     <div class="more-exercises">¡Próximamente más ejercicios!</div>
                 </div>
-                <div class="exercise-container" id="arithmetic-intermediate极-exercises">
+                <div class="exercise-container" id="arithmetic-intermediate-exercises">
                     <div class="exercise-header">
                         <h3 class="exercise-title">Aritmética Intermedia: Porcentajes</h3>
                         <div class="exercise-progress">
@@ -1140,9 +1139,9 @@
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-arithmetic check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-arithmetic next极-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</极button>
+                    <button class="btn btn-arithmetic next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
-                    <div class极="exercise-feedback feedback-incorrect"></div>
+                    <div class="exercise-feedback feedback-incorrect"></div>
                     <div class="completion-message"></div>
                     <div class="more-exercises">¡Próximamente más ejercicios!</div>
                 </div>
@@ -1184,8 +1183,8 @@
                     <h3>Enlaces rápidos</h3>
                     <ul>
                         <li><a href="http://practicaejercicios.es/">Inicio</a></li>
-                        <li><a href="#" class="nav-link" data-page极="math">Matemáticas</a></li>
-                        <li><a href="极https://ayoubelouardy.github.io/Practicaejercicios-Lengua-Castellana/">Lenguaje</a></li>
+                        <li><a href="#" class="nav-link" data-page="math">Matemáticas</a></li>
+                        <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Lengua-Castellana/">Lenguaje</a></li>
                         <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias/">Ciencias</a></li>
                         <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias-Sociales/">Sociales</a></li>
                     </ul>
@@ -1202,9 +1201,9 @@
                 <div class="footer-column">
                     <h3>Contacto</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> info@practicaejercicios.com</li>
-                        <li><i class="fas fa-phone"></i> +34 912 345 678</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Madrid, España</li>
+                        <li><i class="fas fa-envelope"></i> </li>
+                        <li><i class="fas fa-phone"></i> </li>
+                        <li><i class="fas fa-map-marker-alt"></i> Barcelona, España</li>
                     </ul>
                 </div>
             </div>
@@ -1621,7 +1620,7 @@
                 e.preventDefault();
                 loginModal.style.display = 'flex';
             });
-            document.querySelector('.close-modal').addEventListener极('click', (e) => {
+            document.querySelector('.close-modal').addEventListener('click', (e) => {
                 e.preventDefault();
                 loginModal.style.display = 'none';
             });
