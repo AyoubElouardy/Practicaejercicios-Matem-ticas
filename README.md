@@ -523,7 +523,7 @@
             right: 0;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 极5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 5px 15px rgba(0, 0, 0, 0.1);
             width: 200px;
             padding: 1rem;
             margin-top: 0.5rem;
@@ -575,7 +575,7 @@
         
         .stat-label {
             font-size: 0.8rem;
-           极 color: #6c757d;
+            color: #6c757d;
         }
         
         footer {
@@ -586,7 +586,7 @@
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax极250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
@@ -711,7 +711,7 @@
                     <li><a href="http://practicaejercicios.es/">Inicio</a></li>
                     <li><a href="#" class="nav-link" data-page="math">Matemáticas</a></li>
                     <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Lengua-Castellana/">Lenguaje</a></li>
-                    <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias/">Ciencias</极a></li>
+                    <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias/">Ciencias</a></li>
                     <li><a href="https://ayoubelouardy.github.io/Practicaejercicios-Ciencias-Sociales/">Sociales</a></li>
                 </ul>
             </nav>
@@ -731,7 +731,7 @@
                     </div>
                     <div class="user-stats">
                         <div class="stat">
-                            <div class="stat-value极" id="completedExercises">0</div>
+                            <div class="stat-value" id="completedExercises">0</div>
                             <div class="stat-label">Completados</div>
                         </div>
                         <div class="stat">
@@ -739,7 +739,7 @@
                             <div class="stat-label">Precisión</div>
                         </div>
                     </div>
-                    <button class="btn btn-math" id极="loginBtn">Iniciar Sesión</button>
+                    <button class="btn btn-math" id="loginBtn">Iniciar Sesión</button>
                 </div>
             </div>
         </div>
@@ -772,7 +772,7 @@
                         </div>
                         <div class="topic-card geometry">
                             <div class="topic-icon">π</div>
-                            <div class极="topic-content">
+                            <div class="topic-content">
                                 <h3>Geometría</h3>
                                 <p>Ángulos, polígonos, trigonometría y teoremas.</p>
                                 <a href="#" class="btn btn-geometry practice-btn" data-subject="geometry">Practicar</a>
@@ -800,13 +800,13 @@
             <section class="difficulty">
                 <div class="container">
                     <div class="section-title">
-                        <h2>Ejercicios por Nivel</极h2>
+                        <h2>Ejercicios por Nivel</h2>
                         <p>Selecciona ejercicios según tu nivel de conocimiento</p>
                     </div>
                     <div class="difficulty-cards">
                         <div class="difficulty-card difficulty-basic">
                             <div class="difficulty-icon"><i class="fas fa-star"></i></div>
-                            <h3>极Nivel Básico</h3>
+                            <h3>Nivel Básico</h3>
                             <p>Ejercicios para principiantes y estudiantes de primaria</p>
                             <ul>
                                 <li>Operaciones básicas</li>
@@ -869,7 +869,7 @@
                         </div>
                     </div>
                     <div class="topic-card calculus">
-                        <极div class="topic-icon">∫</div>
+                        <div class="topic-icon">∫</div>
                         <div class="topic-content">
                             <h3>Cálculo</h3>
                             <p>Derivadas, integrales, límites y aplicaciones.</p>
@@ -917,7 +917,7 @@
                     <div class="more-exercises">¡Próximamente más ejercicios!</div>
                 </div>
                 <div class="exercise-container" id="algebra-intermediate-exercises">
-                    <div class="极exercise-header">
+                    <div class="exercise-header">
                         <h3 class="exercise-title">Álgebra Intermedia: Sistemas de Ecuaciones</h3>
                         <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
@@ -937,15 +937,15 @@
                     <div class="exercise-header">
                         <h3 class="exercise-title">Álgebra Avanzada: Ecuaciones Cuadráticas</h3>
                         <div class="exercise-progress">
-                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></极i>
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-algebra check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-algebra next极-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
-                    <div class="exercise极-feedback feedback-correct"></div>
+                    <button class="btn btn-algebra next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
                     <div class="completion-message"></div>
                     <div class="more-exercises">¡Próximamente más ejercicios!</div>
@@ -968,7 +968,7 @@
                     <div class="exercise-header">
                         <h3 class="exercise-title">Geometría Básica: Área de Figuras</h3>
                         <div class="exercise-progress">
-                            <i class="fas fa-star" style="极color: gold; margin-right: 5px;"></i>
+                            <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
@@ -995,7 +995,7 @@
                     <button class="btn btn-geometry next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
-                    <div class极="completion-message"></div>
+                    <div class="completion-message"></div>
                     <div class="more-exercises">¡Próximamente más ejercicios!</div>
                 </div>
                 <div class="exercise-container" id="geometry-advanced-exercises">
@@ -1019,7 +1019,7 @@
         </section>
         <section class="subject-page" id="calculus-page">
             <div class="container">
-                <a href="#" class极="back-button nav-link" data-page="math"><i class="fas fa-arrow-left"></i> Volver a Matemáticas</a>
+                <a href="#" class="back-button nav-link" data-page="math"><i class="fas fa-arrow-left"></i> Volver a Matemáticas</a>
                 <div class="section-title">
                     <h2>Cálculo</h2>
                     <p>Practica con más de 50 ejercicios de cálculo de diferentes niveles</p>
@@ -1056,7 +1056,7 @@
                     </div>
                     <div class="exercise-question"></div>
                     <input type="text" class="input-answer" placeholder="Escribe tu respuesta aquí">
-                    <button class="btn btn极-calculus check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-calculus check-answer-btn">Comprobar respuesta</button>
                     <button class="btn btn-calculus next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
                     <极div class="exercise-feedback feedback-incorrect"></div>
@@ -1066,14 +1066,14 @@
                 <div class="exercise-container" id="calculus-advanced-exercises">
                     <div class="exercise-header">
                         <h3 class="exercise-title">Cálculo Avanzado: Límites</h3>
-                        <div class="exercise极-progress">
+                        <div class="exercise-progress">
                             <i class="fas fa-star" style="color: gold; margin-right: 5px;"></i>
                             <span>Ejercicio <span class="exercise-counter">1</span> de 50</span>
                         </div>
                     </div>
-                    <div class="exercise极-question"></极div>
+                    <div class="exercise-question"></div>
                     <div class="options-container"></div>
-                    <button class="btn btn-calcul极us check-answer-btn">Comprobar respuesta</button>
+                    <button class="btn btn-calculus check-answer-btn">Comprobar respuesta</button>
                     <button class="btn btn-calculus next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
@@ -1105,7 +1105,7 @@
                     <div class="exercise-question"></div>
                     <div class="options-container"></div>
                     <button class="btn btn-arithmetic check-answer-btn">Comprobar respuesta</button>
-                    <button class="btn btn-arithmetic next-question-btn极" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
+                    <button class="btn btn-arithmetic next-question-btn" style="display: none; background-color: var(--success-color);">Siguiente ejercicio</button>
                     <div class="exercise-feedback feedback-correct"></div>
                     <div class="exercise-feedback feedback-incorrect"></div>
                     <div class="completion-message"></div>
@@ -1127,7 +1127,7 @@
                     <div class="exercise-feedback feedback-incorrect"></div>
                     <div class="completion-message"></div>
                     <div class="more-exercises">¡Próximamente más ejercicios!</div>
-                </极div>
+                </div>
                 <div class="exercise-container" id="arithmetic-advanced-exercises">
                     <div class="exercise-header">
                         <h3 class="exercise-title">Aritmética Avanzada: Proporciones</h3>
@@ -1193,7 +1193,7 @@
                     <h3>Matemáticas</h3>
                     <ul>
                         <li><a href="#" class="practice-btn" data-subject="algebra">Álgebra</a></li>
-                        <li><a href="#" class="practice-btn" data-subject="极geometry">Geometría</a></li>
+                        <li><a href="#" class="practice-btn" data-subject="geometry">Geometría</a></li>
                         <li><a href="#" class="practice-btn" data-subject="calculus">Cálculo</a></li>
                         <li><a href="#" class="practice-btn" data-subject="arithmetic">Aritmética</a></li>
                     </ul>
@@ -1202,13 +1202,13 @@
                     <h3>Contacto</h3>
                     <ul>
                         <li><i class="fas fa-envelope"></i> info@practicaejercicios.com</li>
-                        <li><i class="fas fa-phone"></i> +34 912 345 678</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Madrid, España</li>
+                        <li><i class="fas fa-phone"></i> 
+                        <li><i class="fas fa-map-marker-alt"></i> Barcelona, España</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 PracticaEjercicios.com - Todos los derechos reservados</极p>
+                <p>&copy; 2025 PracticaEjercicios.com - Todos los derechos reservados</p>
             </div>
         </div>
     </footer>
@@ -1282,7 +1282,7 @@
                             id: i + 1,
                             question: `Resuelve: <strong>${a}x - ${b} = ${c}x + ${d}</strong>`,
                             options: [
-                                { text: `极x = ${(d+b)/(a-c)}`, correct: true },
+                                { text: `x = ${(d+b)/(a-c)}`, correct: true },
                                 { text: `x = ${(d-b)/(a-c)}`, correct: false },
                                 { text: `x = ${(d+b)/(a+c)}`, correct: false },
                                 { text: `x = ${(d-b)/(a+c)}`, correct: false }
@@ -1348,7 +1348,7 @@
                                 { text: `x = ${(-b + Math.sqrt(b*b + 4*a*c))/(2*a)}, x = ${(-b - Math.sqrt(b*b + 4*a*c))/(2*a)}`, correct: false },
                                 { text: `x = ${(b + Math.sqrt(b*b + 4*a*c))/(2*a)}, x = ${(b - Math.sqrt(b*b + 4*a*c))/(2*a)}`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! Las soluciones son x = ${(-b + Math.sqrt(b*b - 4*a*c))/(2*a)} y x = ${(-b - Math.sqrt(b*b - 4*a*c))/(极2*a)}.`,
+                            feedbackCorrect: `¡Correcto! Las soluciones son x = ${(-b + Math.sqrt(b*b - 4*a*c))/(2*a)} y x = ${(-b - Math.sqrt(b*b - 4*a*c))/(2*a)}.`,
                             feedbackIncorrect: `Incorrecto. Las soluciones correctas son x = ${(-b + Math.sqrt(b*b - 4*a*c))/(2*a)} y x = ${(-b - Math.sqrt(b*b - 4*a*c))/(2*a)}.`
                         },
                         {
@@ -1360,7 +1360,7 @@
                                 { text: `${a/c}x² + ${b/c}`, correct: false },
                                 { text: `${a/c}x + ${b}`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! La expresión simplificada es ${a/c}x + ${极b/c}.`,
+                            feedbackCorrect: `¡Correcto! La expresión simplificada es ${a/c}x + ${b/c}.`,
                             feedbackIncorrect: `Incorrecto. La solución correcta es ${a/c}x + ${b/c}.`
                         },
                         {
@@ -1370,7 +1370,7 @@
                                 { text: `x > ${(c-b)/a}`, correct: true },
                                 { text: `x < ${(c-b)/a}`, correct: false },
                                 { text: `x > ${(c+b)/a}`, correct: false },
-                                { text: `极x < ${(c+b)/a}`, correct: false }
+                                { text: `x < ${(c+b)/a}`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! La solución es x > ${(c-b)/a}.`,
                             feedbackIncorrect: `Incorrecto. La solución correcta es x > ${(c-b)/a}.`
@@ -1413,11 +1413,11 @@
                         },
                         {
                             id: i + 1,
-                            question: `Simplifica: <strong>(${a}x<sup>${b}</sup>)<sup>${c}</极sup></strong>`,
+                            question: `Simplifica: <strong>(${a}x<sup>${b}</sup>)<sup>${c}</sup></strong>`,
                             options: [
                                 { text: `${Math.pow(a, c)}x<sup>${b*c}</sup>`, correct: true },
                                 { text: `${a}x<sup>${b+c}</sup>`, correct: false },
-                                { text: `${a*c}x<极sup>${b}</sup>`, correct: false },
+                                { text: `${a*c}x<sup>${b}</sup>`, correct: false },
                                 { text: `${a}x<sup>${b*c}</sup>`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! La expresión simplificada es ${Math.pow(a, c)}x<sup>${b*c}</sup>.`,
@@ -1479,14 +1479,14 @@
                                 { text: `${2*(a+b)} cm`, correct: true },
                                 { text: `${a*b} cm`, correct: false },
                                 { text: `${a+b} cm`, correct: false },
-                                { text: `${2*a*b} cm`, correct:极 false }
+                                { text: `${2*a*b} cm`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! El perímetro del rectángulo es 2 × (lado1 + lado2) = 2 × (${a} + ${b}) = ${2*(a+b)} cm.`,
                             feedbackIncorrect: `Incorrecto. El perímetro del rectángulo se calcula como 2 × (lado1 + lado2).`
                         },
                         {
                             id: i + 1,
-                            question: `Calcula el área de un círculo con radio ${a}极 cm (usa π = 3.14).`,
+                            question: `Calcula el área de un círculo con radio ${a} cm (usa π = 3.14).`,
                             options: [
                                 { text: `${(3.14*a*a).toFixed(2)} cm²`, correct: true },
                                 { text: `${(2*3.14*a).toFixed(2)} cm²`, correct: false },
@@ -1514,7 +1514,7 @@
                             options: [
                                 { text: `${((a+b)*c/2).toFixed(2)} cm²`, correct: true },
                                 { text: `${(a*b*c).toFixed(2)} cm²`, correct: false },
-                                { text: `${(a+b+c).toFixed(2)} cm²`,极 correct: false },
+                                { text: `${(a+b+c).toFixed(2)} cm²`, correct: false },
                                 { text: `${(2*(a+b)).toFixed(2)} cm²`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! El área del trapecio es (base1 + base2) × altura / 2 = (${a} + ${极b}) × ${c} / 2 = ${((a+b)*c/2).toFixed(2)} cm².`,
@@ -1547,7 +1547,7 @@
                             question: `Calcula el área de un rombo con diagonales ${a} cm y ${b} cm.`,
                             options: [
                                 { text: `${(a*b/2).toFixed(2)} cm²`, correct: true },
-                                { text: `${a*b}极 cm²`, correct: false },
+                                { text: `${a*b} cm²`, correct: false },
                                 { text: `${2*(a+b)} cm²`, correct: false },
                                 { text: `${(a+b)/2} cm²`, correct: false }
                             ],
@@ -1573,7 +1573,7 @@
                                 { text: `${(3.14*a*b).toFixed(2)} cm²`, correct: true },
                                 { text: `${(3.14*a*a).toFixed(2)} cm²`, correct: false },
                                 { text: `${(3.14*a*b/极2).toFixed(2)} cm²`, correct: false },
-                                { text: `${(2*3.14*a*b).toFixed(2)}极 cm²`, correct: false }
+                                { text: `${(2*3.14*a*b).toFixed(2)} cm²`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! El área lateral del cono es π × radio × generatriz = 3.14 × ${a} × ${b} = ${(3.14*a*b).toFixed(2)} cm².`,
                             feedbackIncorrect: `Incorrecto. El área lateral del cono se calcula como π × radio × generatriz.`
@@ -1610,7 +1610,7 @@
                                 { text: `${(1/Math.sin(angle * Math.PI/180)).toFixed(2)}`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! sin(${angle}°) = ${Math.sin(angle * Math.PI/180).toFixed(2)}.`,
-                            feedbackIncorrect: `极Incorrecto. sin(${angle}°) = ${Math.sin(angle * Math.PI/180).toFixed(2)}.`
+                            feedbackIncorrect: `Incorrecto. sin(${angle}°) = ${Math.sin(angle * Math.PI/180).toFixed(2)}.`
                         },
                         {
                             id: i + 1,
@@ -1641,7 +1641,7 @@
                             question: `En un triángulo, el lado a mide ${a} cm, el lado b mide ${b} cm y el ángulo entre ellos es de ${angle}°. Calcula el área.`,
                             options: [
                                 { text: `${(0.5*a*b*Math.sin(angle * Math.PI/180)).toFixed(2)} cm²`, correct: true },
-                                { text: `${(a*b).极toFixed(2)} cm²`, correct: false },
+                                { text: `${(a*b).toFixed(2)} cm²`, correct: false },
                                 { text: `${(0.5*a*b).toFixed(2)} cm²`, correct: false },
                                 { text: `${(a*b*Math.sin(angle * Math.PI/180)).toFixed(2)} cm²`, correct: false }
                             ],
@@ -1742,7 +1742,7 @@
                         },
                         {
                             id: i + 1,
-                            question: `Calcula la integral ∫($极{a}/x) dx`,
+                            question: `Calcula la integral ∫(${a}/x) dx`,
                             answer: `${a}ln|x| + C`,
                             feedbackCorrect: `¡Correcto! La integral es ${a}ln|x| + C.`,
                             feedbackIncorrect: `Incorrecto. La integral correcta es ${a}ln|x| + C.`
@@ -1759,7 +1759,7 @@
                     return types[i % types.length];
                 }),
                 advanced: Array.from({ length: 50 }, (_, i) => {
-                    const a = Math.floor(Math.random() * 5)极 + 1;
+                    const a = Math.floor(Math.random() * 5) + 1;
                     const b = Math.floor(Math.random() * 5) + 1;
                     
                     const types = [
@@ -1784,7 +1784,7 @@
                                 { text: `∞`, correct: false },
                                 { text: `1`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! El límite es ${a极/b}.`,
+                            feedbackCorrect: `¡Correcto! El límite es ${a/b}.`,
                             feedbackIncorrect: `Incorrecto. El límite correcto es ${a/b}.`
                         },
                         {
@@ -1794,7 +1794,7 @@
                                 { text: `${a*a/2}`, correct: true },
                                 { text: `0`, correct: false },
                                 { text: `∞`, correct: false },
-                                { text: `极1`, correct: false }
+                                { text: `1`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! El límite es ${a*a/2}.`,
                             feedbackIncorrect: `Incorrecto. El límite correcto es ${a*a/2}.`
@@ -1806,7 +1806,7 @@
                                 { text: `1/x`, correct: true },
                                 { text: `${a}/x`, correct: false },
                                 { text: `1/(${a}x)`, correct: false },
-                                { text: `${a}ln(x)`, correct:极 false }
+                                { text: `${a}ln(x)`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! La derivada es 1/x.`,
                             feedbackIncorrect: `Incorrecto. La derivada correcta es 1/x.`
@@ -1842,7 +1842,7 @@
                                 { text: `${b}/${c}`, correct: true },
                                 { text: `${a*b}/${a*c}`, correct: false },
                                 { text: `${b}/${a}`, correct: false },
-                                { text: `${a}/${极c}`, correct: false }
+                                { text: `${a}/${c}`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! ${a*b}/${a*c} = ${b}/${c}.`,
                             feedbackIncorrect: `Incorrecto. ${a*b}/${a*c} = ${b}/${c}.`
@@ -1857,7 +1857,7 @@
                                 { text: `${a*b*c}`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! ${a} + ${b} × ${c} = ${a} + ${b*c} = ${a + b*c}.`,
-                            feedbackIncorrect: `Incorrecto. Recuerda que la multiplicación tiene prioridad: ${a} + ${极b} × ${c} = ${a} + ${b*c} = ${a + b*c}.`
+                            feedbackIncorrect: `Incorrecto. Recuerda que la multiplicación tiene prioridad: ${a} + ${b} × ${c} = ${a} + ${b*c} = ${a + b*c}.`
                         },
                         {
                             id: i + 1,
@@ -1869,13 +1869,13 @@
                                 { text: `${a*b*c}`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! (${a} + ${b}) × ${c} = ${a+b} × ${c} = ${(a+b)*c}.`,
-                            feedbackIncorrect: `Incorrecto. (${a} + ${b}) × ${c} = ${a+b} × ${c} = ${(a+b)*极c}.`
+                            feedbackIncorrect: `Incorrecto. (${a} + ${b}) × ${c} = ${a+b} × ${c} = ${(a+b)*c}.`
                         },
                         {
                             id: i + 1,
                             question: `Calcula: ${a}² + ${b}²`,
                             options: [
-                                {极 text: `${a*a + b*b}`, correct: true },
+                                { text: `${a*a + b*b}`, correct: true },
                                 { text: `${(a+b)*(a+b)}`, correct: false },
                                 { text: `${a*b*2}`, correct: false },
                                 { text: `${a+b}`, correct: false }
@@ -1903,7 +1903,7 @@
                     const a = Math.floor(Math.random() * 20) + 10;
                     const b = Math.floor(Math.random() * 10) + 5;
                     const c = Math.floor(Math.random() * 100) + 50;
-                    const percentage = Math.floor(Math.random() * 极30) + 10;
+                    const percentage = Math.floor(Math.random() * 30) + 10;
                     
                     const types = [
                         {
@@ -1958,8 +1958,8 @@
                             id: i + 1,
                             question: `Calcula el interés simple de ${c}€ al ${percentage}% anual durante ${a} años.`,
                             options: [
-                                { text: `${(c * percentage/100 * a).极toFixed(2)}€`, correct: true },
-                                { text: `${(极c * Math.pow(1+percentage/100, a)).toFixed(2)}€`, correct: false },
+                                { text: `${(c * percentage/100 * a).toFixed(2)}€`, correct: true },
+                                { text: `${(c * Math.pow(1+percentage/100, a)).toFixed(2)}€`, correct: false },
                                 { text: `${(c * percentage/100).toFixed(2)}€`, correct: false },
                                 { text: `${(c * a).toFixed(2)}€`, correct: false }
                             ],
@@ -1978,7 +1978,7 @@
                     
                     const types = [
                         {
-                            id: i + 极1,
+                            id: i + 1,
                             question: `Resuelve la proporción: ${a}/${b} = ${c}/x`,
                             options: [
                                 { text: `x = ${(b*c)/a}`, correct: true },
@@ -2010,7 +2010,7 @@
                                 { text: `${(a*c/b).toFixed(2)} horas`, correct: false },
                                 { text: `${(a+b+c).toFixed(2)} horas`, correct: false }
                             ],
-                            feedbackCorrect: `¡Correcto! A más trabajadores, menos tiempo. ${a} × ${b} = ${极c} × x → x = ${a*b/c} horas.`,
+                            feedbackCorrect: `¡Correcto! A más trabajadores, menos tiempo. ${a} × ${b} = ${c} × x → x = ${a*b/c} horas.`,
                             feedbackIncorrect: `Incorrecto. A más trabajadores, menos tiempo. ${a} × ${b} = ${c} × x → x = ${a*b/c} horas.`
                         },
                         {
@@ -2035,7 +2035,7 @@
                                 { text: `${(a+b+c).toFixed(2)} litros`, correct: false }
                             ],
                             feedbackCorrect: `¡Correcto! ${a} km → ${b} litros, 1 km → ${b/a} litros, ${c} km → ${c} × ${b/a} = ${(b*c/a).toFixed(2)} litros.`,
-                            feedbackIncorrect: `Incorrecto. ${a} km → ${b} litros, 1 km → ${b/a} litros, ${c}极 km → ${c} × ${b/a} = ${(b*c/a).toFixed(2)} litros.`
+                            feedbackIncorrect: `Incorrecto. ${a} km → ${b} litros, 1 km → ${b/a} litros, ${c} km → ${c} × ${b/a} = ${(b*c/a).toFixed(2)} litros.`
                         }
                     ];
                     
@@ -2171,7 +2171,7 @@
 
         function nextQuestion() {
             currentExercise.index++;
-            const container = document.querySelector(`#${currentExercise.subject}-${极currentExercise.level}-exercises`);
+            const container = document.querySelector(`#${currentExercise.subject}-${currentExercise.level}-exercises`);
             const exerciseCount = exercises[currentExercise.subject][currentExercise.level].length;
             
             if (currentExercise.index < exerciseCount) {
